@@ -12,7 +12,6 @@ export default function Top() {
   const [recordType, setRecordType] = useState("create")
   const [isEntered, setIsEntered] = useState(false);
 
-
   return (
     <>
       <Header />
