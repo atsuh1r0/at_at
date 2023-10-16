@@ -17,7 +17,7 @@ export default function Top() {
     <>
       <Header />
       <FirstView isEntered={isEntered} setIsEntered={setIsEntered} setIsModalOpened={setIsModalOpened} setRecordType={setRecordType} />
-      <ToggleContents />
+      {isEntered && <ToggleContents />}
 
       {/* modal */}
       <Overlay isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} />
