@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Header() {
   return (
     <header className="flex p-2 justify-between items-center bg-blue-400">
@@ -10,7 +8,7 @@ export default function Header() {
         </span>
       </div>
       <div>
-        <Image src="/logo.png" alt={""} width={32} height={32} />
+        <img src="/logo.png" alt="" className="w-12 h-12" />
       </div>
     </header>
   )

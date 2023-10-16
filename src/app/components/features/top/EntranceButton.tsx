@@ -15,9 +15,9 @@ export const EntranceButton: FC<Props> = ({isEntered, setIsEntered}: Props) => {
     <button
       className={
         isEntered ?
-          "flex gap-10 items-center bg-white py-2 px-10 rounded-full shadow-2xl flex-row-reverse"
+          "flex gap-10 items-center bg-white py-2 px-10 rounded-full shadow-2xl shadow-gray-700/50 flex-row-reverse"
         :
-          "flex gap-10 items-center bg-white py-2 px-10 rounded-full shadow-2xl"
+          "flex gap-10 items-center bg-white py-2 px-10 rounded-full shadow-2xl shadow-gray-700/50"
       }
       onClick={handleClick}
     >
