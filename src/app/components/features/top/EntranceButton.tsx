@@ -4,11 +4,16 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa"
 type Props = {
   isEntered: boolean
   setIsEntered: React.Dispatch<React.SetStateAction<boolean>>
+  setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>
+  setRecordType: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const EntranceButton: FC<Props> = ({isEntered, setIsEntered}: Props) => {
+export const EntranceButton: FC<Props> = ({isEntered, setIsEntered, setIsModalOpened, setRecordType}: Props) => {
   const handleClick = () => {
-    setIsEntered(!isEntered)
+    setIsModalOpened(!isEntered)
+
+    // isEnteredがtrueの場合は、入室中であるため、退室ボタンを押したことになる
+    if(isEntered) setIsEntered(!isEntered)
   }
 
   return (

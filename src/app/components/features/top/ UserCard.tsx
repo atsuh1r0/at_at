@@ -23,7 +23,7 @@ export const UserCard: FC<Props> = ({user}: Props) => {
         </div>
         <div className="flex gap-3">
           <div className="md:flex md:gap-2 mt-2 text-gray-500">
-            <div>09:30:00</div>
+            <div>帰宅予定 09:30</div>
             <div>@カフェ</div>
           </div>
           <div>
