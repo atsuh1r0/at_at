@@ -1,6 +1,4 @@
-// 今は利用していない
-
-type User = {
+export type User = {
   id: number,
   name: string,
   posses: Posse,
@@ -8,15 +6,15 @@ type User = {
   statuses: Status,
 }
 
-type Posse = {
+export type Posse = {
   posse: number,
 }
 
-type Generation = {
+export type Generation = {
   generation: number,
 }
 
-type Status = {
+export type Status = {
   is_entered: boolean,
   scheduled_time_to_leave: string,
   comment: string,
@@ -24,10 +22,10 @@ type Status = {
   working_statuses: Status,
 }
 
-type Place = {
+export type Place = {
   place: string,
 }
 
-type WorkingStatus = {
+export type WorkingStatus = {
   status: string,
 }

@@ -1,11 +1,11 @@
 'use client'
 
-import Header from "@/app/components/layouts/Header";
 import ToggleContents from "./ToggleContents";
 import { Overlay } from "@/app/components/common/Overlay";
 import { FC, useState } from "react";
 import { RecordStatusModal } from "./RecordStatusModal";
 import { FirstView } from "./FirstView";
+import { Header } from "@/app/components/layouts/Header";
 
 // supebase側で型情報の設定が必要？なため一旦anyとする
 type Props = {
@@ -20,7 +20,7 @@ export const Top: FC<Props> = ({usersData, loginUserData}: Props) => {
 
   return (
     <>
-      <Header />
+      <Header loginUserData={loginUserData} />
       <main className="h-screen bg-blue-200">
         <FirstView isEntered={isEntered} setIsEntered={setIsEntered} setIsModalOpened={setIsModalOpened} setRecordType={setRecordType} />
         <ToggleContents />

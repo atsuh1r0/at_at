@@ -4,7 +4,7 @@ import { Top } from "./features/top";
 const supabase = createClientComponentClient();
 
 // 仮
-const loginUserId = 1;
+const loginUserId = 2;
 
 export default async function Home() {
     const usersData = await supabase.from('users').select('id, name, posses(posse),generations(generation), statuses(is_entered, scheduled_time_to_leave, comment, places(place), working_statuses(status))');
