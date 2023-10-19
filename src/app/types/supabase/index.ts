@@ -3,7 +3,7 @@ export type User = {
   name: string,
   posses: Posse,
   generations: Generation,
-  statuses: Status,
+  statuses: Status[],
 }
 
 export type Posse = {
@@ -19,7 +19,7 @@ export type Status = {
   scheduled_time_to_leave: string,
   comment: string,
   places: Place,
-  working_statuses: Status,
+  working_statuses: WorkingStatus,
 }
 
 export type Place = {

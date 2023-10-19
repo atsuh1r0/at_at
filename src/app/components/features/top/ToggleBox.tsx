@@ -3,9 +3,13 @@
 import { FC, useState } from "react"
 import { FaChevronUp } from "react-icons/fa"
 import { ToggleList } from "./ToggleList"
+import { User } from "@/app/types/supabase"
 
+type Props = {
+  usersData: User[];
+}
 
-export const ToggleBox: FC = () => {
+export const ToggleBox: FC<Props> = ({usersData}: Props) => {
   const [isOpened, setIsOpened] = useState(true)
 
   return (
@@ -18,14 +22,14 @@ export const ToggleBox: FC = () => {
       >
         <p>
           現在のHarbors
-          <span className="ml-1 text-orange-500">5</span>
+          <span className="ml-1 text-orange-500">{usersData.length}</span>
           人
         </p>
         <div>
           <FaChevronUp className={isOpened ? "fill-blue-600 text-xl" : "fill-blue-600 text-xl transform rotate-180"} />
         </div>
       </div>
-      {isOpened && <ToggleList />}
+      {isOpened && <ToggleList usersData={usersData} />}
     </div>
   )
 }
