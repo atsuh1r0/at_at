@@ -1,32 +1,17 @@
-import Top from "./features/top";
-
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Top } from "./features/top";
 
 const supabase = createClientComponentClient();
 
+// 仮
+const loginUserId = 1;
+
 export default async function Home() {
-  const { data } = await supabase.from('users').select()
-  return <pre>{JSON.stringify(data, null, 2)}</pre>
-}
+    const usersData = await supabase.from('users').select('id, name, posses(posse),generations(generation), statuses(is_entered, scheduled_time_to_leave, comment, places(place), working_statuses(status))');
 
-// type Post = {
-//   id: number;
-//   name: string;
-// }
+    const loginUserData = usersData.data?.filter((userData: any) => userData.id === loginUserId)[0];
 
-export default function Home() {
-  // const supabase = createClientComponentClient<Database>()
-  // const { data: posts } = await supabase.from("users").select("id, name");
-    
-  // return posts.map((post : Post ) => (
-  //   <p key={post.id}>
-  //     <Link href={`/static/${post.id}`}>{post.name}</Link>
-  //   </p>
-  // ));
-    
   return (
-    <main className="h-screen bg-blue-200">
-      <Top />
-    </main>
+      <Top usersData={usersData.data} loginUserData={loginUserData} />
   )
 }
