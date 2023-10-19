@@ -1,11 +1,19 @@
+'use client'
+
 import { User } from "@/app/types/supabase";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { FC } from "react"
+
+const supabase = createClientComponentClient();
 
 type Props = {
   userData: User;
 }
 
 export const UserCard: FC<Props> = ({userData}: Props) => {
+  const { data } =  supabase.storage.from('userIcons').getPublicUrl(userData.icon_path.replace(/\s+/g, ""));
+  const iconUrl = data.publicUrl;
+
   const displayPosse = (posse: number) => {
     switch (posse) {
       case 1:
@@ -19,7 +27,6 @@ export const UserCard: FC<Props> = ({userData}: Props) => {
     }
   };
 
-  // "12:37:16"の形を""22:43"の形に変換する
   const displayFormattedDateTime = (time: string) => {
     return time.slice(0, 5);
   }
@@ -27,7 +34,7 @@ export const UserCard: FC<Props> = ({userData}: Props) => {
   return (
     <div className="flex gap-5 p-5 rounded-2xl items-center shadow-2xl shadow-gray-700/80 text-black bg-white">
       <div className="w-24 h-24 border-2 border-black rounded-full">
-        <img src="/ono.jpg" alt="" className="rounded-full" />
+        <img src={iconUrl} alt="" className="rounded-full" />
       </div>
       <div>
         <div className="flex pr-4 border-b border-gray-400 w-full font-bold text-xl">

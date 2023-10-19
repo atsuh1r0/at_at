@@ -1,6 +1,7 @@
 export type User = {
   id: number,
   name: string,
+  icon_path: string
   posses: Posse,
   generations: Generation,
   statuses: Status[],
@@ -15,6 +16,7 @@ export type Generation = {
 }
 
 export type Status = {
+  date: string,
   is_entered: boolean,
   scheduled_time_to_leave: string,
   comment: string,

@@ -14,6 +14,7 @@ export default async function Home() {
   .select(`
     id,
     name,
+    icon_path,
     posses(posse),
     generations(generation),
     statuses!inner(date, is_entered, scheduled_time_to_leave, comment, places(place), working_statuses(status))
@@ -25,14 +26,12 @@ export default async function Home() {
   .select(`
     id,
     name,
+    icon_path,
     posses(posse),
     generations(generation),
     statuses!inner(date, is_entered, scheduled_time_to_leave, comment, places(place), working_statuses(status))
   `)
   .eq('id', loginUserId);
-
-
-
 
   return (
       <Top usersData={usersData.data} loginUserData={loginUserData.data} />
