@@ -15,9 +15,9 @@ export default async function Home() {
     id,
     name,
     icon_path,
-    posses(posse),
-    generations(generation),
-    statuses!inner(date, is_entered, scheduled_time_to_leave, comment, places(place), working_statuses(status))
+    posses(id, posse),
+    generations(id, generation),
+    statuses!inner(date, is_entered, scheduled_time_to_leave, comment, places(id, place), working_statuses(id, status))
   `)
   .eq('statuses.date', today);
 
@@ -33,7 +33,21 @@ export default async function Home() {
   `)
   .eq('id', loginUserId);
 
+  const placesData = await supabase
+  .from('places')
+  .select(`
+    id,
+    place
+  `);
+
+  const workingStatusesData = await supabase
+  .from('working_statuses')
+  .select(`
+    id,
+    status
+  `);
+
   return (
-      <Top usersData={usersData.data} loginUserData={loginUserData.data} />
+      <Top usersData={usersData.data} loginUserData={loginUserData.data} placesData={placesData.data} workingStatusesData={workingStatusesData.data} />
   )
 }

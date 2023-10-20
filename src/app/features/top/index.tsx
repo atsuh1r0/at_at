@@ -11,9 +11,11 @@ import { ToggleContents } from "./ToggleContents";
 type Props = {
   usersData: any;
   loginUserData: any;
+  placesData: any;
+  workingStatusesData: any;
 }
 
-export const Top: FC<Props> = ({usersData, loginUserData}: Props) => {
+export const Top: FC<Props> = ({usersData, loginUserData, placesData, workingStatusesData}: Props) => {
   const [isModalOpened, setIsModalOpened] = useState(false)
   const [recordType, setRecordType] = useState("create")
   const [isEntered, setIsEntered] = useState(loginUserData[0].statuses[0].is_entered);
@@ -27,7 +29,7 @@ export const Top: FC<Props> = ({usersData, loginUserData}: Props) => {
 
         {/* modal */}
         <Overlay isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} />
-        <RecordStatusModal isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} setIsEntered={setIsEntered} type={recordType} />
+        <RecordStatusModal placesData={placesData} workingStatusesData={workingStatusesData} isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} setIsEntered={setIsEntered} type={recordType} />
       </main>
     </>
   )

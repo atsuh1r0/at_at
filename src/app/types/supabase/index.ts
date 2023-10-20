@@ -8,10 +8,12 @@ export type User = {
 }
 
 export type Posse = {
+  id: number,
   posse: number,
 }
 
 export type Generation = {
+  id: number,
   generation: number,
 }
 
@@ -25,9 +27,11 @@ export type Status = {
 }
 
 export type Place = {
+  id: number,
   place: string,
 }
 
 export type WorkingStatus = {
+  id: number,
   status: string,
 }

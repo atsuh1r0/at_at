@@ -1,14 +1,17 @@
-import { FC } from "react"
+import { Place, WorkingStatus } from "@/app/types/supabase"
+import { FC, useEffect } from "react"
 import { useForm } from "react-hook-form"
 
 type Props = {
+  placesData: Place[];
+  workingStatusesData: WorkingStatus[];
   isModalOpened: boolean
   setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>
   setIsEntered: React.Dispatch<React.SetStateAction<boolean>>
   type: string
 }
 
-export const RecordStatusModal: FC<Props> = ({isModalOpened, setIsModalOpened, setIsEntered, type}: Props) => {
+export const RecordStatusModal: FC<Props> = ({placesData, workingStatusesData, isModalOpened, setIsModalOpened, setIsEntered, type}: Props) => {
   const {
     register,
     handleSubmit,
@@ -59,6 +62,7 @@ export const RecordStatusModal: FC<Props> = ({isModalOpened, setIsModalOpened, s
 
   const onSubmit = (data: any) => {
     console.log(data)
+
     setIsEntered(isModalOpened)
     setIsModalOpened(!isModalOpened)
   };
@@ -70,10 +74,9 @@ export const RecordStatusModal: FC<Props> = ({isModalOpened, setIsModalOpened, s
           <div className="mb-5">
             <label htmlFor="place" className="block pl-1 mb-2 text-blue-500 font-bold">場所</label>
             <select id="place" {...register('place', validationRules.place)} className="p-3 w-64 bg-gray-100 rounded">
-              <option value="1">ルーム</option>
-              <option value="2">屋上</option>
-              <option value="3">カフェ</option>
-              <option value="4">コワーキング</option>
+              {placesData.map((place) => (
+                <option key={place.id} value={place.id}>{place.place}</option>
+              ))}
             </select>
             {errors.place?.message && <p className="mt-1 text-red-600 text-sm">{errors.place.message.toString()}</p>}
           </div>
@@ -85,9 +88,9 @@ export const RecordStatusModal: FC<Props> = ({isModalOpened, setIsModalOpened, s
           <div className="mb-5">
             <label htmlFor="status" className="block pl-1 mb-2 text-blue-500 font-bold">ステータス</label>
             <select  id="status" {...register('status', validationRules.status)} className="p-3 w-64 bg-gray-100 rounded">
-              <option value="1">作業中</option>
-              <option value="2">外出中</option>
-              <option value="3">フリー</option>
+              {workingStatusesData.map((workingStatus) => (
+                <option key={workingStatus.id} value={workingStatus.id}>{workingStatus.status}</option>
+              ))}
             </select>
             {errors.status?.message && <p className="mt-1 text-red-600 text-sm">{errors.status.message.toString()}</p>}
           </div>
