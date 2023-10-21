@@ -5,10 +5,9 @@ type Props = {
   isEntered: boolean
   setIsEntered: React.Dispatch<React.SetStateAction<boolean>>
   setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>
-  setRecordType: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const EntranceButton: FC<Props> = ({isEntered, setIsEntered, setIsModalOpened, setRecordType}: Props) => {
+export const EntranceButton: FC<Props> = ({isEntered, setIsEntered, setIsModalOpened}: Props) => {
   const handleClick = () => {
     setIsModalOpened(!isEntered)
 

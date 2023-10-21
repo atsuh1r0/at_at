@@ -17,14 +17,13 @@ type Props = {
 
 export const Top: FC<Props> = ({usersData, loginUserData, placesData, workingStatusesData}: Props) => {
   const [isModalOpened, setIsModalOpened] = useState(false)
-  const [recordType, setRecordType] = useState("create")
   const [isEntered, setIsEntered] = useState(loginUserData[0].statuses[0]?.is_entered);
 
   return (
     <>
       <Header loginUserData={loginUserData[0]} />
       <main className="h-screen bg-blue-200">
-        <FirstView isEntered={isEntered} setIsEntered={setIsEntered} setIsModalOpened={setIsModalOpened} setRecordType={setRecordType} />
+        <FirstView isEntered={isEntered} setIsEntered={setIsEntered} setIsModalOpened={setIsModalOpened} />
         <ToggleContents usersData={usersData} />
 
         {/* modal */}
@@ -36,7 +35,6 @@ export const Top: FC<Props> = ({usersData, loginUserData, placesData, workingSta
           isModalOpened={isModalOpened}
           setIsModalOpened={setIsModalOpened}
           setIsEntered={setIsEntered}
-          type={recordType}
         />
       </main>
     </>

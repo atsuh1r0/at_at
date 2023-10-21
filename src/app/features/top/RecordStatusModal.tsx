@@ -9,7 +9,6 @@ type Props = {
   isModalOpened: boolean
   setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>
   setIsEntered: React.Dispatch<React.SetStateAction<boolean>>
-  type: string
 }
 
 export const RecordStatusModal: FC<Props> = ({
@@ -19,8 +18,10 @@ export const RecordStatusModal: FC<Props> = ({
     isModalOpened,
     setIsModalOpened,
     setIsEntered,
-    type
   }: Props) => {
+    const todayStatusRecord = loginUserData.statuses;
+    const today = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }).slice(0, 10).replace(/\//g, '-');
+
   const {
     register,
     handleSubmit,
@@ -58,21 +59,7 @@ export const RecordStatusModal: FC<Props> = ({
     },
   }
 
-  const buttonText = (): React.ReactNode => {
-    switch (type) {
-      case "create":
-        return "入室"
-      case "update":
-        return "更新"
-      default:
-        return null;
-    }
-  }
-
   const onSubmit = async(formData: any) => {
-    const todayStatusRecord = loginUserData.statuses;
-    const today = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }).slice(0, 10).replace(/\//g, '-');
-
     // statusesに今日のレコードがある場合はupdate
     if(todayStatusRecord.length > 0) {
       const reqBodyData = JSON.stringify({
@@ -139,12 +126,12 @@ export const RecordStatusModal: FC<Props> = ({
                 <option key={place.id} value={place.id}>{place.place}</option>
               ))}
             </select>
-            {errors.place?.message && <p className="mt-1 text-red-600 text-sm">{errors.place.message.toString()}</p>}
+            {errors.placeId?.message && <p className="mt-1 text-red-600 text-sm">{errors.placeId.message.toString()}</p>}
           </div>
           <div className="mb-5">
             <label htmlFor="scheduledTimeToLeave" className="block pl-1 mb-2 text-blue-500 font-bold">帰宅予定</label>
             <input id="scheduledTimeToLeave" {...register('scheduledTimeToLeave', validationRules.scheduledTimeToLeave)} type="time" className="p-3 w-64 bg-gray-100 rounded" />
-            {errors.returnTime?.message && <p className="mt-1 text-red-600 text-sm">{errors.returnTime.message.toString()}</p>}
+            {errors.scheduledTimeToLeave?.message && <p className="mt-1 text-red-600 text-sm">{errors.scheduledTimeToLeave.message.toString()}</p>}
           </div>
           <div className="mb-5">
             <label htmlFor="workingStatusId" className="block pl-1 mb-2 text-blue-500 font-bold">ステータス</label>
@@ -153,7 +140,7 @@ export const RecordStatusModal: FC<Props> = ({
                 <option key={workingStatus.id} value={workingStatus.id}>{workingStatus.status}</option>
               ))}
             </select>
-            {errors.status?.message && <p className="mt-1 text-red-600 text-sm">{errors.status.message.toString()}</p>}
+            {errors.workingStatusId?.message && <p className="mt-1 text-red-600 text-sm">{errors.workingStatusId.message.toString()}</p>}
           </div>
           <div className="mb-5">
             <label htmlFor="comment" className="block pl-1 mb-2 text-blue-500 font-bold">
@@ -164,7 +151,7 @@ export const RecordStatusModal: FC<Props> = ({
             {errors.comment?.message && <p className="mt-1 text-red-600 text-sm">{errors.comment.message.toString()}</p>}
           </div>
           <div className="flex mt-10 justify-end">
-            <button type="submit" className="py-3 px-8 bg-blue-400 text-white rounded">{buttonText()}</button>
+            <button type="submit" className="py-3 px-8 bg-blue-400 text-white rounded">{todayStatusRecord.length === 0 || todayStatusRecord[0].is_entered == false ? '入室' : '更新'}</button>
           </div>
         </form>
       }
