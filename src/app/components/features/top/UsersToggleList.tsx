@@ -7,15 +7,13 @@ type Props = {
 }
 
 export const UsersToggleList: FC<Props> = ({usersData}: Props) => {
-  const filteredUsersData = usersData.filter((userData) => userData.statuses.length !== 0);
-
   return (
     <div
       className={
           "flex flex-col gap-5"
       }
     >
-      {filteredUsersData.map((userData) => (
+      {usersData.map((userData) => (
         <UserCard key={userData.id} userData={userData} />
       ))}
     </div>

@@ -1,8 +1,9 @@
-import { Place, WorkingStatus } from "@/app/types/supabase"
+import { Place, User, WorkingStatus } from "@/app/types/supabase"
 import { FC } from "react"
 import { useForm } from "react-hook-form"
 
 type Props = {
+  loginUserData: User;
   placesData: Place[];
   workingStatusesData: WorkingStatus[];
   isModalOpened: boolean
@@ -12,6 +13,7 @@ type Props = {
 }
 
 export const RecordStatusModal: FC<Props> = ({
+  loginUserData,
     placesData,
     workingStatusesData,
     isModalOpened,
@@ -26,19 +28,19 @@ export const RecordStatusModal: FC<Props> = ({
   } = useForm();
 
   const validationRules = {
-    place: {
+    placeId: {
       required: {
         value: true,
         message: '入力が必須の項目です。',
       },
     },
-    returnTime: {
+    scheduledTimeToLeave: {
       required: {
         value: true,
         message: '入力が必須の項目です。',
       },
     },
-    status: {
+    workingStatusId: {
       required: {
         value: true,
         message: '入力が必須の項目です。',
@@ -67,43 +69,59 @@ export const RecordStatusModal: FC<Props> = ({
     }
   }
 
-  const onSubmit = async(data: any) => {
-    const todayStatusRecord = false
+  const onSubmit = async(formData: any) => {
+    const todayStatusRecord = loginUserData.statuses;
+    const today = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }).slice(0, 10).replace(/\//g, '-');
 
-    if(todayStatusRecord) {
-      // statusesに今日のレコードがある場合はupdate
+    // statusesに今日のレコードがある場合はupdate
+    if(todayStatusRecord.length > 0) {
+      const reqBodyData = JSON.stringify({
+        userId: loginUserData.id,
+        date: today,
+        ...formData
+      })
+
       const res = await fetch('/api/statuses', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ data }),
+        body: reqBodyData,
       })
       const resData = await res.json()
 
       if(resData.error) {
         alert("エラーが発生しました。")
+        console.log(resData.error)
         return
       }
 
-      console.log(resData.data)
+      // console.log(resData.data)
+
+    // statusesに今日のレコードがない場合はcreate
     }else {
-      // statusesに今日のレコードがない場合はcreate
+      const reqBodyData = JSON.stringify({
+        userId: loginUserData.id,
+        date: today,
+        ...formData
+      })
+
       const res = await fetch('/api/statuses', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ data }),
+        body: reqBodyData,
       })
       const resData = await res.json()
 
       if(resData.error) {
         alert("エラーが発生しました。")
+        console.log(resData.error)
         return
       }
 
-      console.log(resData.data)
+      // console.log(resData.data)
     }
 
     setIsEntered(isModalOpened)
@@ -115,8 +133,8 @@ export const RecordStatusModal: FC<Props> = ({
       {isModalOpened &&
         <form className="fixed top-1/2 left-1/2 p-10 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-2xl shadow-gray-700/50 text-black rounded" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-5">
-            <label htmlFor="place" className="block pl-1 mb-2 text-blue-500 font-bold">場所</label>
-            <select id="place" {...register('place', validationRules.place)} className="p-3 w-64 bg-gray-100 rounded">
+            <label htmlFor="placeId" className="block pl-1 mb-2 text-blue-500 font-bold">場所</label>
+            <select id="placeId" {...register('placeId', validationRules.placeId)} className="p-3 w-64 bg-gray-100 rounded">
               {placesData.map((place) => (
                 <option key={place.id} value={place.id}>{place.place}</option>
               ))}
@@ -124,13 +142,13 @@ export const RecordStatusModal: FC<Props> = ({
             {errors.place?.message && <p className="mt-1 text-red-600 text-sm">{errors.place.message.toString()}</p>}
           </div>
           <div className="mb-5">
-            <label htmlFor="returnTime" className="block pl-1 mb-2 text-blue-500 font-bold">帰宅予定</label>
-            <input id="returnTime" {...register('returnTime', validationRules.returnTime)} type="time" className="p-3 w-64 bg-gray-100 rounded" />
+            <label htmlFor="scheduledTimeToLeave" className="block pl-1 mb-2 text-blue-500 font-bold">帰宅予定</label>
+            <input id="scheduledTimeToLeave" {...register('scheduledTimeToLeave', validationRules.scheduledTimeToLeave)} type="time" className="p-3 w-64 bg-gray-100 rounded" />
             {errors.returnTime?.message && <p className="mt-1 text-red-600 text-sm">{errors.returnTime.message.toString()}</p>}
           </div>
           <div className="mb-5">
-            <label htmlFor="status" className="block pl-1 mb-2 text-blue-500 font-bold">ステータス</label>
-            <select  id="status" {...register('status', validationRules.status)} className="p-3 w-64 bg-gray-100 rounded">
+            <label htmlFor="workingStatusId" className="block pl-1 mb-2 text-blue-500 font-bold">ステータス</label>
+            <select  id="workingStatusId" {...register('workingStatusId', validationRules.workingStatusId)} className="p-3 w-64 bg-gray-100 rounded">
               {workingStatusesData.map((workingStatus) => (
                 <option key={workingStatus.id} value={workingStatus.id}>{workingStatus.status}</option>
               ))}

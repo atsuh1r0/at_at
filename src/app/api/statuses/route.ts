@@ -9,7 +9,15 @@ export async function POST(request:NextRequest) {
 
   const { data, error } = await supabase
   .from('statuses')
-  .insert({ user_id: 1, place_id: 2, working_status_id: 3, date: '2023-10-21', is_entered: true, scheduled_time_to_leave: '10:55:11', comment: 'test' })
+  .insert({
+    user_id: body.userId,
+    place_id: body.placeId,
+    working_status_id: body.workingStatusId,
+    date: body.date,
+    is_entered: true,
+    scheduled_time_to_leave: body.scheduledTimeToLeave,
+    comment: body.comment
+  })
   .select()
 
   return new Response(JSON.stringify({ data: data, error: error}))
@@ -20,9 +28,17 @@ export async function PUT(request:NextRequest) {
 
   const { data, error } = await supabase
   .from('statuses')
-  .update({ user_id: 1, place_id: 2, working_status_id: 3, date: '2023-10-21', is_entered: true, scheduled_time_to_leave: '13:55:11', comment: 'update test' })
-  .eq('user_id', 1)
-  .eq('date', '2023-10-21')
+  .update({
+    user_id: body.userId,
+    place_id: body.placeId,
+    working_status_id: body.workingStatusId,
+    date: body.date,
+    is_entered: true,
+    scheduled_time_to_leave: body.scheduledTimeToLeave,
+    comment: body.comment
+  })
+  .eq('user_id', body.userId)
+  .eq('date', body.date)
   .select()
 
   return new Response(JSON.stringify({ data: data, error: error}))

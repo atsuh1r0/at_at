@@ -4,7 +4,7 @@ import { Top } from "./features/top";
 const supabase = createClientComponentClient();
 
 // 仮
-const loginUserId = 2;
+const loginUserId = 1;
 
 export default async function Home() {
   const today = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }).slice(0, 10).replace(/\//g, '-');

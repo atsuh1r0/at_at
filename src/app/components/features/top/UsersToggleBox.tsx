@@ -13,6 +13,8 @@ type Props = {
 export const UsersToggleBox: FC<Props> = ({usersData}: Props) => {
   const [isOpened, setIsOpened] = useState(true)
 
+  const filteredUsersData = usersData.filter((userData) => userData.statuses.length !== 0);
+
   return (
     <div>
       <div
@@ -23,14 +25,14 @@ export const UsersToggleBox: FC<Props> = ({usersData}: Props) => {
       >
         <p>
           現在のHarbors
-          <span className="ml-1 text-orange-500">{usersData.length}</span>
+          <span className="ml-1 text-orange-500">{filteredUsersData.length}</span>
           人
         </p>
         <div>
           <FaChevronUp className={isOpened ? "fill-blue-600 text-xl" : "fill-blue-600 text-xl transform rotate-180"} />
         </div>
       </div>
-      {isOpened && <UsersToggleList usersData={usersData} />}
+      {isOpened && <UsersToggleList usersData={filteredUsersData} />}
     </div>
   )
 }

@@ -30,6 +30,7 @@ export const Top: FC<Props> = ({usersData, loginUserData, placesData, workingSta
         {/* modal */}
         <Overlay isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} />
         <RecordStatusModal
+          loginUserData={loginUserData[0]}
           placesData={placesData}
           workingStatusesData={workingStatusesData}
           isModalOpened={isModalOpened}
