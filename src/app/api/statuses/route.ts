@@ -4,6 +4,25 @@ import { NextRequest } from "next/server"
 const supabase = createClientComponentClient();
 
 
+export async function GET(request: NextRequest) {
+  const { data, error } = await supabase
+  .from('statuses')
+  .select(`
+    id,
+    user_id,
+    date,
+    is_entered,
+    scheduled_time_to_leave,
+    comment,
+    places(id, place),
+    working_statuses(id, status)
+  `)
+  .is('deleted_at', null);
+
+  return new Response(JSON.stringify({ data: data, error: error}))
+}
+
+
 export async function POST(request:NextRequest) {
   const body =await request.json()
 
