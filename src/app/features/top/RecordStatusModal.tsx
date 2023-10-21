@@ -1,4 +1,6 @@
+import { createStatuses } from "@/app/services/createStatuses";
 import { getUsersWithTodayStatuses } from "@/app/services/getUsersWithTodayStatuses";
+import { putStatuses } from "@/app/services/putStatuses";
 import { Place, User, WorkingStatus } from "@/app/types/supabase"
 import { FC } from "react"
 import { useForm } from "react-hook-form"
@@ -72,14 +74,7 @@ export const RecordStatusModal: FC<Props> = ({
         ...formData
       })
 
-      const res = await fetch('/api/statuses', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: reqBodyData,
-      })
-      const resData = await res.json()
+      const resData = await putStatuses(reqBodyData)
 
       if(resData.error) {
         alert("エラーが発生しました。")
@@ -99,14 +94,7 @@ export const RecordStatusModal: FC<Props> = ({
         ...formData
       })
 
-      const res = await fetch('/api/statuses', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: reqBodyData,
-      })
-      const resData = await res.json()
+      const resData = await createStatuses(reqBodyData)
 
       if(resData.error) {
         alert("エラーが発生しました。")

@@ -1,4 +1,5 @@
 import { getUsersWithTodayStatuses } from "@/app/services/getUsersWithTodayStatuses"
+import { putStatuses } from "@/app/services/putStatuses"
 import { User } from "@/app/types/supabase"
 import { FC } from "react"
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa"
@@ -25,14 +26,7 @@ export const EntranceButton: FC<Props> = ({loginUserData, isEntered, setIsEntere
       type: 'out'
     })
 
-    const res = await fetch('/api/statuses', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: reqBodyData,
-    })
-    const resData = await res.json()
+    const resData = await putStatuses(reqBodyData)
 
     if(resData.error) {
       alert("エラーが発生しました。")
