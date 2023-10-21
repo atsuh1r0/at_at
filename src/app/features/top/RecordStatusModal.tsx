@@ -1,3 +1,4 @@
+import { getUsersWithTodayStatuses } from "@/app/services/getUsersWithTodayStatuses";
 import { Place, User, WorkingStatus } from "@/app/types/supabase"
 import { FC } from "react"
 import { useForm } from "react-hook-form"
@@ -9,6 +10,7 @@ type Props = {
   isModalOpened: boolean
   setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>
   setIsEntered: React.Dispatch<React.SetStateAction<boolean>>
+  setUsersData: React.Dispatch<React.SetStateAction<User[]>>
 }
 
 export const RecordStatusModal: FC<Props> = ({
@@ -18,6 +20,7 @@ export const RecordStatusModal: FC<Props> = ({
     isModalOpened,
     setIsModalOpened,
     setIsEntered,
+    setUsersData
   }: Props) => {
     const todayStatusRecord = loginUserData.statuses;
     const today = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }).slice(0, 10).replace(/\//g, '-');
@@ -84,7 +87,9 @@ export const RecordStatusModal: FC<Props> = ({
         return
       }
 
-      // console.log(resData.data)
+      const usersWithStatusesDataRes = await getUsersWithTodayStatuses();
+      setUsersData(usersWithStatusesDataRes)
+      setIsEntered(true)
 
     // statusesに今日のレコードがない場合はcreate
     }else {

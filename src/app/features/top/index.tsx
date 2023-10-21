@@ -17,7 +17,7 @@ const loginUserId = 1;
 export const Top: FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false)
   const [isEntered, setIsEntered] = useState(false);
-  const [usersData, setUsersData] = useState([]);
+  const [usersData, setUsersData] = useState<User[]>([]);
   const [loginUserData, setLoginUserData] = useState<User>();
   const [placesData, setPlacesData] = useState([]);
   const [workingStatusesData, setWorkingStatusesData] = useState([]);
@@ -47,8 +47,6 @@ export const Top: FC = () => {
             <main className="h-screen bg-blue-200">
               <FirstView loginUserData={loginUserData} isEntered={isEntered} setIsEntered={setIsEntered} setIsModalOpened={setIsModalOpened} />
               <ToggleContents usersData={usersData} />
-
-              {/* modal */}
               <Overlay isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} />
               <RecordStatusModal
                 loginUserData={loginUserData}
@@ -57,6 +55,7 @@ export const Top: FC = () => {
                 isModalOpened={isModalOpened}
                 setIsModalOpened={setIsModalOpened}
                 setIsEntered={setIsEntered}
+                setUsersData={setUsersData}
               />
             </main>
           </>
