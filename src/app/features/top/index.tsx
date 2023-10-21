@@ -1,7 +1,7 @@
 'use client'
 
 import { Overlay } from "@/app/components/common/Overlay";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { RecordStatusModal } from "./RecordStatusModal";
 import { FirstView } from "./FirstView";
 import { Header } from "@/app/components/layouts/Header";
@@ -18,7 +18,7 @@ type Props = {
 export const Top: FC<Props> = ({usersData, loginUserData, placesData, workingStatusesData}: Props) => {
   const [isModalOpened, setIsModalOpened] = useState(false)
   const [recordType, setRecordType] = useState("create")
-  const [isEntered, setIsEntered] = useState(loginUserData[0].statuses[0].is_entered);
+  const [isEntered, setIsEntered] = useState(loginUserData[0].statuses[0]?.is_entered);
 
   return (
     <>
@@ -29,7 +29,14 @@ export const Top: FC<Props> = ({usersData, loginUserData, placesData, workingSta
 
         {/* modal */}
         <Overlay isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} />
-        <RecordStatusModal placesData={placesData} workingStatusesData={workingStatusesData} isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} setIsEntered={setIsEntered} type={recordType} />
+        <RecordStatusModal
+          placesData={placesData}
+          workingStatusesData={workingStatusesData}
+          isModalOpened={isModalOpened}
+          setIsModalOpened={setIsModalOpened}
+          setIsEntered={setIsEntered}
+          type={recordType}
+        />
       </main>
     </>
   )

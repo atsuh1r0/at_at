@@ -1,5 +1,5 @@
 import { Place, WorkingStatus } from "@/app/types/supabase"
-import { FC, useEffect } from "react"
+import { FC } from "react"
 import { useForm } from "react-hook-form"
 
 type Props = {
@@ -11,7 +11,14 @@ type Props = {
   type: string
 }
 
-export const RecordStatusModal: FC<Props> = ({placesData, workingStatusesData, isModalOpened, setIsModalOpened, setIsEntered, type}: Props) => {
+export const RecordStatusModal: FC<Props> = ({
+    placesData,
+    workingStatusesData,
+    isModalOpened,
+    setIsModalOpened,
+    setIsEntered,
+    type
+  }: Props) => {
   const {
     register,
     handleSubmit,
@@ -60,8 +67,44 @@ export const RecordStatusModal: FC<Props> = ({placesData, workingStatusesData, i
     }
   }
 
-  const onSubmit = (data: any) => {
-    console.log(data)
+  const onSubmit = async(data: any) => {
+    const todayStatusRecord = false
+
+    if(todayStatusRecord) {
+      // statusesに今日のレコードがある場合はupdate
+      const res = await fetch('/api/statuses', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ data }),
+      })
+      const resData = await res.json()
+
+      if(resData.error) {
+        alert("エラーが発生しました。")
+        return
+      }
+
+      console.log(resData.data)
+    }else {
+      // statusesに今日のレコードがない場合はcreate
+      const res = await fetch('/api/statuses', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ data }),
+      })
+      const resData = await res.json()
+
+      if(resData.error) {
+        alert("エラーが発生しました。")
+        return
+      }
+
+      console.log(resData.data)
+    }
 
     setIsEntered(isModalOpened)
     setIsModalOpened(!isModalOpened)

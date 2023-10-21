@@ -2,14 +2,15 @@
 
 import { FC, useState } from "react"
 import { FaChevronUp } from "react-icons/fa"
-import { ToggleList } from "./ToggleList"
+import { UsersToggleList } from "./UsersToggleList"
+
 import { User } from "@/app/types/supabase"
 
 type Props = {
   usersData: User[];
 }
 
-export const ToggleBox: FC<Props> = ({usersData}: Props) => {
+export const UsersToggleBox: FC<Props> = ({usersData}: Props) => {
   const [isOpened, setIsOpened] = useState(true)
 
   return (
@@ -29,7 +30,7 @@ export const ToggleBox: FC<Props> = ({usersData}: Props) => {
           <FaChevronUp className={isOpened ? "fill-blue-600 text-xl" : "fill-blue-600 text-xl transform rotate-180"} />
         </div>
       </div>
-      {isOpened && <ToggleList usersData={usersData} />}
+      {isOpened && <UsersToggleList usersData={usersData} />}
     </div>
   )
 }
