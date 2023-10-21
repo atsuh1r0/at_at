@@ -17,7 +17,8 @@ export default async function Home() {
     icon_path,
     posses(id, posse),
     generations(id, generation)
-  `);
+  `)
+  .is('deleted_at', null);
 
   const loginUserData = await supabase
   .from('users')
@@ -28,7 +29,8 @@ export default async function Home() {
     posses(posse),
     generations(generation)
   `)
-  .eq('id', loginUserId);
+  .eq('id', loginUserId)
+  .is('deleted_at', null);
 
   const statusesData = await supabase
   .from('statuses')
@@ -42,20 +44,23 @@ export default async function Home() {
     places(id, place),
     working_statuses(id, status)
   `)
+  .is('deleted_at', null);
 
   const placesData = await supabase
   .from('places')
   .select(`
     id,
     place
-  `);
+  `)
+  .is('deleted_at', null);
 
   const workingStatusesData = await supabase
   .from('working_statuses')
   .select(`
     id,
     status
-  `);
+  `)
+  .is('deleted_at', null);
 
 
   // usersDataに対応するtodayが今日の日付のstatusesレコードがある場合はそのレコードを追加、ない場合は空の配列を追加

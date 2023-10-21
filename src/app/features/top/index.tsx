@@ -23,7 +23,7 @@ export const Top: FC<Props> = ({usersData, loginUserData, placesData, workingSta
     <>
       <Header loginUserData={loginUserData[0]} />
       <main className="h-screen bg-blue-200">
-        <FirstView isEntered={isEntered} setIsEntered={setIsEntered} setIsModalOpened={setIsModalOpened} />
+        <FirstView loginUserData={loginUserData[0]} isEntered={isEntered} setIsEntered={setIsEntered} setIsModalOpened={setIsModalOpened} />
         <ToggleContents usersData={usersData} />
 
         {/* modal */}

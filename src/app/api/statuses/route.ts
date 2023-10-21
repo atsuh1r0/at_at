@@ -26,17 +26,33 @@ export async function POST(request:NextRequest) {
 export async function PUT(request:NextRequest) {
   const body =await request.json()
 
+  let updateData = null;
+  switch (body.type) {
+    case 'in':
+      updateData = {
+        place_id: body.placeId,
+        working_status_id: body.workingStatusId,
+        is_entered: true,
+        scheduled_time_to_leave: body.scheduledTimeToLeave,
+        comment: body.comment,
+        updated_at: new Date(),
+      }
+      break;
+    case 'out':
+      updateData = {
+        is_entered: false,
+        updated_at: new Date(),
+      }
+      break;
+    default:
+      break;
+  }
+
+  if(!updateData) return new Response(JSON.stringify({ data: null, error: 'type is invalid'}))
+
   const { data, error } = await supabase
   .from('statuses')
-  .update({
-    user_id: body.userId,
-    place_id: body.placeId,
-    working_status_id: body.workingStatusId,
-    date: body.date,
-    is_entered: true,
-    scheduled_time_to_leave: body.scheduledTimeToLeave,
-    comment: body.comment
-  })
+  .update(updateData)
   .eq('user_id', body.userId)
   .eq('date', body.date)
   .select()

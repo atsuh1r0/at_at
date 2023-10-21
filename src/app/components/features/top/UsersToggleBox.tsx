@@ -13,7 +13,7 @@ type Props = {
 export const UsersToggleBox: FC<Props> = ({usersData}: Props) => {
   const [isOpened, setIsOpened] = useState(true)
 
-  const filteredUsersData = usersData.filter((userData) => userData.statuses.length !== 0);
+  const filteredUsersData = usersData.filter((userData) => userData.statuses.length !== 0 && userData.statuses[0]?.is_entered === true);
 
   return (
     <div>

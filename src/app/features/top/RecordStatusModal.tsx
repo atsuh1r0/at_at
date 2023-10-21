@@ -65,6 +65,7 @@ export const RecordStatusModal: FC<Props> = ({
       const reqBodyData = JSON.stringify({
         userId: loginUserData.id,
         date: today,
+        type: 'in',
         ...formData
       })
 
@@ -111,7 +112,7 @@ export const RecordStatusModal: FC<Props> = ({
       // console.log(resData.data)
     }
 
-    setIsEntered(isModalOpened)
+    // setIsEntered(isModalOpened)
     setIsModalOpened(!isModalOpened)
   };
 
