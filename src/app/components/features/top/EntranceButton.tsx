@@ -1,3 +1,4 @@
+import { getUsersWithTodayStatuses } from "@/app/services/getUsersWithTodayStatuses"
 import { User } from "@/app/types/supabase"
 import { FC } from "react"
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa"
@@ -7,9 +8,10 @@ type Props = {
   isEntered: boolean
   setIsEntered: React.Dispatch<React.SetStateAction<boolean>>
   setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>
+  setUsersData: React.Dispatch<React.SetStateAction<User[]>>
 }
 
-export const EntranceButton: FC<Props> = ({loginUserData, isEntered, setIsEntered, setIsModalOpened}: Props) => {
+export const EntranceButton: FC<Props> = ({loginUserData, isEntered, setIsEntered, setIsModalOpened, setUsersData}: Props) => {
   const today = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }).slice(0, 10).replace(/\//g, '-');
 
   const handleClickForIn = () => {
@@ -34,15 +36,12 @@ export const EntranceButton: FC<Props> = ({loginUserData, isEntered, setIsEntere
 
     if(resData.error) {
       alert("エラーが発生しました。")
-      console.log(resData.error)
       return
     }
 
-    console.log(resData.data)
-
-
-    // isEnteredがtrueの場合は、入室中であるため、退室ボタンを押したことになる
-    // if(isEntered) setIsEntered(!isEntered)
+    const usersWithStatusesDataRes = await getUsersWithTodayStatuses();
+    setUsersData(usersWithStatusesDataRes)
+    setIsEntered(false)
   }
 
   return (

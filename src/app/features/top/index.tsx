@@ -45,7 +45,13 @@ export const Top: FC = () => {
           <>
             <Header loginUserData={loginUserData} />
             <main className="h-screen bg-blue-200">
-              <FirstView loginUserData={loginUserData} isEntered={isEntered} setIsEntered={setIsEntered} setIsModalOpened={setIsModalOpened} />
+              <FirstView
+                loginUserData={loginUserData}
+                isEntered={isEntered}
+                setIsEntered={setIsEntered}
+                setIsModalOpened={setIsModalOpened}
+                setUsersData={setUsersData}
+              />
               <ToggleContents usersData={usersData} />
               <Overlay isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} />
               <RecordStatusModal

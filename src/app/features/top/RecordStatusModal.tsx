@@ -63,8 +63,8 @@ export const RecordStatusModal: FC<Props> = ({
   }
 
   const onSubmit = async(formData: any) => {
-    // statusesに今日のレコードがある場合はupdate
     if(todayStatusRecord.length > 0) {
+      // statusesに今日のレコードがある場合はupdate
       const reqBodyData = JSON.stringify({
         userId: loginUserData.id,
         date: today,
@@ -83,16 +83,16 @@ export const RecordStatusModal: FC<Props> = ({
 
       if(resData.error) {
         alert("エラーが発生しました。")
-        console.log(resData.error)
         return
       }
 
       const usersWithStatusesDataRes = await getUsersWithTodayStatuses();
       setUsersData(usersWithStatusesDataRes)
       setIsEntered(true)
+      setIsModalOpened(false)
 
-    // statusesに今日のレコードがない場合はcreate
     }else {
+      // statusesに今日のレコードがない場合はcreate
       const reqBodyData = JSON.stringify({
         userId: loginUserData.id,
         date: today,
@@ -110,15 +110,14 @@ export const RecordStatusModal: FC<Props> = ({
 
       if(resData.error) {
         alert("エラーが発生しました。")
-        console.log(resData.error)
         return
       }
 
-      // console.log(resData.data)
+      const usersWithStatusesDataRes = await getUsersWithTodayStatuses();
+      setUsersData(usersWithStatusesDataRes)
+      setIsEntered(true)
+      setIsModalOpened(false)
     }
-
-    // setIsEntered(isModalOpened)
-    setIsModalOpened(!isModalOpened)
   };
 
   return (
