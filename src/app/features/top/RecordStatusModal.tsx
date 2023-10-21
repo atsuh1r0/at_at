@@ -114,7 +114,7 @@ export const RecordStatusModal: FC<Props> = ({
         <form className="fixed top-1/2 left-1/2 p-10 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-2xl shadow-gray-700/50 text-black rounded" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-5">
             <label htmlFor="placeId" className="block pl-1 mb-2 text-blue-500 font-bold">場所</label>
-            <select id="placeId" {...register('placeId', validationRules.placeId)} className="p-3 w-64 bg-gray-100 rounded">
+            <select id="placeId" defaultValue={loginUserData.statuses[0].places.id} {...register('placeId', validationRules.placeId)} className="p-3 w-64 bg-gray-100 rounded">
               {placesData.map((place) => (
                 <option key={place.id} value={place.id}>{place.place}</option>
               ))}
@@ -123,12 +123,12 @@ export const RecordStatusModal: FC<Props> = ({
           </div>
           <div className="mb-5">
             <label htmlFor="scheduledTimeToLeave" className="block pl-1 mb-2 text-blue-500 font-bold">帰宅予定</label>
-            <input id="scheduledTimeToLeave" {...register('scheduledTimeToLeave', validationRules.scheduledTimeToLeave)} type="time" className="p-3 w-64 bg-gray-100 rounded" />
+            <input id="scheduledTimeToLeave" value={loginUserData.statuses[0].scheduled_time_to_leave} {...register('scheduledTimeToLeave', validationRules.scheduledTimeToLeave)} type="time" className="p-3 w-64 bg-gray-100 rounded" />
             {errors.scheduledTimeToLeave?.message && <p className="mt-1 text-red-600 text-sm">{errors.scheduledTimeToLeave.message.toString()}</p>}
           </div>
           <div className="mb-5">
             <label htmlFor="workingStatusId" className="block pl-1 mb-2 text-blue-500 font-bold">ステータス</label>
-            <select  id="workingStatusId" {...register('workingStatusId', validationRules.workingStatusId)} className="p-3 w-64 bg-gray-100 rounded">
+            <select  id="workingStatusId" defaultValue={loginUserData.statuses[0].working_statuses.id} {...register('workingStatusId', validationRules.workingStatusId)} className="p-3 w-64 bg-gray-100 rounded">
               {workingStatusesData.map((workingStatus) => (
                 <option key={workingStatus.id} value={workingStatus.id}>{workingStatus.status}</option>
               ))}
@@ -140,7 +140,7 @@ export const RecordStatusModal: FC<Props> = ({
               一言
               <span className="ml-2 text-gray-500 text-xs">※10文字以内</span>
             </label>
-            <input id="comment" {...register('comment', validationRules.comment)} type="text" className="p-3 w-64 bg-gray-100 rounded" maxLength={10} />
+            <input id="comment" value={loginUserData.statuses[0].comment} {...register('comment', validationRules.comment)} type="text" className="p-3 w-64 bg-gray-100 rounded" maxLength={10} />
             {errors.comment?.message && <p className="mt-1 text-red-600 text-sm">{errors.comment.message.toString()}</p>}
           </div>
           <div className="flex mt-10 justify-end">
