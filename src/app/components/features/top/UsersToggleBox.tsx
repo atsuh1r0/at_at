@@ -19,7 +19,7 @@ export const UsersToggleBox: FC<Props> = ({usersData}: Props) => {
     <div>
       <div
         className={
-          "flex items-center bg-white mb-5 py-4 px-10 shadow-2xl text-blue-700 font-bold justify-between border border-blue-900 cursor-pointer"
+          "flex items-center bg-white mb-5 py-4 px-10 shadow-2xl text-blue-700 font-bold justify-between border border-blue-700 cursor-pointer rounded"
         }
         onClick={() => setIsOpened(!isOpened)}
       >

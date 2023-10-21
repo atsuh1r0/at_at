@@ -1,6 +1,6 @@
 'use client'
 
-import { Overlay } from "@/app/components/common/Overlay";
+import { ModalOverlay } from "@/app/components/common/ModalOverlay";
 import { FC, useEffect, useState } from "react";
 import { RecordStatusModal } from "./RecordStatusModal";
 import { FirstView } from "./FirstView";
@@ -10,6 +10,7 @@ import { getUsersWithTodayStatuses } from "@/app/services/getUsersWithTodayStatu
 import { User } from "@/app/types/supabase";
 import { getPlaces } from "@/app/services/getPlaces";
 import { getWorkingStatuses } from "@/app/services/getWorkingStatuses";
+import { Loading } from "@/app/components/common/Loading";
 
 // 仮
 const loginUserId = 1;
@@ -33,7 +34,7 @@ export const Top: FC = () => {
       setLoginUserData(loginUserWithStatusesData[0]);
       setPlacesData(placesDataRes);
       setWorkingStatusesData(workingStatusesDataRes);
-      setIsEntered(loginUserWithStatusesData[0].statuses[0].is_entered);
+      setIsEntered(loginUserWithStatusesData[0].statuses.length > 0 ? loginUserWithStatusesData[0].statuses[0].is_entered : false);
     }
     fetchUsersData();
   }, []);
@@ -53,7 +54,7 @@ export const Top: FC = () => {
                 setUsersData={setUsersData}
               />
               <ToggleContents usersData={usersData} />
-              <Overlay isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} />
+              <ModalOverlay isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened} />
               <RecordStatusModal
                 loginUserData={loginUserData}
                 placesData={placesData}
@@ -66,7 +67,9 @@ export const Top: FC = () => {
             </main>
           </>
           :
-            <div>loading...</div>
+          <div className="flex h-screen bg-blue-200 justify-center items-center">
+            <Loading />
+          </div>
         }
     </>
 
