@@ -2,13 +2,11 @@ import { FC } from "react"
 
 type Props = {
   setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>
-  setRecordType: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const ChangeLabelButton: FC<Props> = ({setIsModalOpened, setRecordType}: Props) => {
+export const ChangeLabelButton: FC<Props> = ({setIsModalOpened}: Props) => {
   const handleClick = () => {
     setIsModalOpened(true)
-    setRecordType("update")
   }
 
   return (

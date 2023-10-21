@@ -1,8 +1,15 @@
-export default function Header() {
+import { User } from "@/app/types/supabase"
+import { FC } from "react"
+
+type Props = {
+  loginUserData: User
+}
+
+export const Header: FC<Props> = ({loginUserData}: Props) => {
   return (
     <header className="flex p-2 justify-between items-center bg-blue-400">
       <div className="text-white">
-        小野寛太
+        {loginUserData.name}
         <span>
           さん
         </span>
