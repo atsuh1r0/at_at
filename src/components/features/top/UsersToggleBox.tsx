@@ -4,7 +4,7 @@ import { FC, useState } from "react"
 import { FaChevronUp } from "react-icons/fa"
 import { UsersToggleList } from "./UsersToggleList"
 
-import { User } from "@/app/types/supabase"
+import { User } from "@/types/supabase"
 
 type Props = {
   usersData: User[];

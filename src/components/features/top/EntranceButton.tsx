@@ -1,8 +1,8 @@
 'use client'
 
-import { getUsersWithTodayStatuses } from "@/app/services/getUsersWithTodayStatuses"
-import { putStatuses } from "@/app/services/putStatuses"
-import { User } from "@/app/types/supabase"
+import { getUsersWithTodayStatuses } from "@/services/getUsersWithTodayStatuses"
+import { putStatuses } from "@/services/putStatuses"
+import { User } from "@/types/supabase"
 import { FC, useState } from "react"
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa"
 import { LoadingOverlay } from "../../common/LoadingOverlay"

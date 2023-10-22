@@ -1,6 +1,6 @@
 'use client'
 
-import { User } from "@/app/types/supabase";
+import { User } from "@/types/supabase";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { FC } from "react"
 

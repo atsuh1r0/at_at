@@ -1,5 +1,5 @@
-import { UserCard } from "@/app/components/features/top/ UserCard"
-import { User } from "@/app/types/supabase";
+import { UserCard } from "@/components/features/top/ UserCard"
+import { User } from "@/types/supabase";
 import { FC } from "react"
 
 type Props = {

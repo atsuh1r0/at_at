@@ -1,10 +1,10 @@
 'use client'
 
-import { LoadingOverlay } from "@/app/components/common/LoadingOverlay";
-import { createStatuses } from "@/app/services/createStatuses";
-import { getUsersWithTodayStatuses } from "@/app/services/getUsersWithTodayStatuses";
-import { putStatuses } from "@/app/services/putStatuses";
-import { Place, User, WorkingStatus } from "@/app/types/supabase"
+import { LoadingOverlay } from "@/components/common/LoadingOverlay";
+import { createStatuses } from "@/services/createStatuses";
+import { getUsersWithTodayStatuses } from "@/services/getUsersWithTodayStatuses";
+import { putStatuses } from "@/services/putStatuses";
+import { Place, User, WorkingStatus } from "@/types/supabase"
 import { FC, useState } from "react"
 import { useForm } from "react-hook-form"
 

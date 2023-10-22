@@ -1,7 +1,7 @@
 'use client'
 
-import { UsersToggleBox } from "@/app/components/features/top/UsersToggleBox";
-import { User } from "@/app/types/supabase";
+import { UsersToggleBox } from "@/components/features/top/UsersToggleBox";
+import { User } from "@/types/supabase";
 import { FC } from "react";
 
 type Props = {
