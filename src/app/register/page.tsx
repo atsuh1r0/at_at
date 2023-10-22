@@ -110,7 +110,7 @@ export default function Register() {
     }
 
     setOnSubmitLoading(false)
-    router.push('/')
+    router.push(`/?id=${uuid}`)
   }
 
   return (
