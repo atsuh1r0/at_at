@@ -1,5 +1,6 @@
 export type User = {
   id: number,
+  auth_id: string,
   name: string,
   icon_path: string
   posses: Posse,

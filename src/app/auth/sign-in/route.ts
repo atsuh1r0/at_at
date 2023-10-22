@@ -1,4 +1,3 @@
-import { getLoginUserWithStatuses } from '@/services/getLoginUserWithStatuses'
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
@@ -46,7 +45,7 @@ export async function POST(request: Request) {
     )
   }
 
-  return NextResponse.redirect(requestUrl.origin, {
+  return NextResponse.redirect(`${requestUrl.origin}?id=${publicLoginUserData.data.auth_id}`, {
     // a 301 status is required to redirect from a POST to a GET route
     status: 301,
   })
