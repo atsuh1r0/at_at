@@ -1,4 +1,4 @@
-import { Messages } from '@/features/login/Messages'
+import { Messages } from '@/app/features/login/Messages'
 
 export default function Login() {
   return (

@@ -1,17 +1,20 @@
 'use client'
 
-import { Loading } from "@/components/common/Loading";
 import { ModalOverlay } from "@/components/common/ModalOverlay";
+import { FC, useEffect, useState } from "react";
 import { Header } from "@/components/layouts/Header";
-import { getPlaces } from "@/services/getPlaces";
 import { getUsersWithTodayStatuses } from "@/services/getUsersWithTodayStatuses";
-import { getWorkingStatuses } from "@/services/getWorkingStatuses";
-import { FC, useState, useEffect } from "react";
-import { FirstView } from "./FirstView";
-import { RecordStatusModal } from "./RecordStatusModal";
-import { ToggleContents } from "./ToggleContents";
 import { User } from "@/types/supabase";
-import { getLoginUserWithStatuses } from "@/services/getLoginUserWithStatuses";
+import { getPlaces } from "@/services/getPlaces";
+import { getWorkingStatuses } from "@/services/getWorkingStatuses";
+import { Loading } from "@/components/common/Loading";
+import { FirstView } from "@/app/features/top/FirstView";
+import { ToggleContents } from "@/app/features/top/ToggleContents";
+import { RecordStatusModal } from "@/app/features/top/RecordStatusModal";
+
+// 仮
+const loginUserId = 1;
+
 
 export const Top: FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false)
@@ -24,20 +27,15 @@ export const Top: FC = () => {
   useEffect(() => {
     const fetchUsersData = async () => {
       const usersWithStatusesDataRes = await getUsersWithTodayStatuses();
-      const loginUserWithStatusesDataRes = await getLoginUserWithStatuses();
+      const loginUserWithStatusesData = usersWithStatusesDataRes.filter((userData: User) => userData.id === loginUserId);
       const placesDataRes = await getPlaces();
       const workingStatusesDataRes = await getWorkingStatuses();
 
-      if (!usersWithStatusesDataRes || !loginUserWithStatusesDataRes || !placesDataRes || !workingStatusesDataRes) {
-        await fetch('/auth/sign-out', { method: 'POST' });
-        location.reload();
-      }
-
       setUsersData(usersWithStatusesDataRes);
-      setLoginUserData(loginUserWithStatusesDataRes[0]);
+      setLoginUserData(loginUserWithStatusesData[0]);
       setPlacesData(placesDataRes);
       setWorkingStatusesData(workingStatusesDataRes);
-      setIsEntered(loginUserWithStatusesDataRes[0].statuses.length > 0 ? loginUserWithStatusesDataRes[0].statuses[0].is_entered : false);
+      setIsEntered(loginUserWithStatusesData[0].statuses.length > 0 ? loginUserWithStatusesData[0].statuses[0].is_entered : false);
     }
     fetchUsersData();
   }, []);
