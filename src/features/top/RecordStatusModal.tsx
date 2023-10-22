@@ -170,7 +170,7 @@ export const RecordStatusModal: FC<Props> = ({
             {errors.comment?.message && <p className="mt-1 text-red-600 text-sm">{errors.comment.message.toString()}</p>}
           </div>
           <div className="flex mt-10 justify-end">
-            <button type="submit" className="py-3 px-8 bg-blue-400 text-white rounded">{todayStatusRecord.length === 0 || todayStatusRecord[0].is_entered == false ? '入室' : '更新'}</button>
+            <button type="submit" className="py-3 px-8 bg-blue-500 text-white rounded">{todayStatusRecord.length === 0 || todayStatusRecord[0].is_entered == false ? '入室' : '更新'}</button>
           </div>
         </form>
       }
