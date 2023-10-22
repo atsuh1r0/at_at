@@ -2,9 +2,10 @@ import { FC } from "react"
 
 type Props = {
   color?: string
+  bgColor?: string
 }
 
-export const Loading: FC<Props> = ({color}: Props) => {
+export const Loading: FC<Props> = ({color, bgColor}: Props) => {
   const ballColorSwitch = () => {
     switch (color) {
       case "skyblue":
@@ -13,6 +14,7 @@ export const Loading: FC<Props> = ({color}: Props) => {
         return "bg-blue-700"
     }
   }
+
   const ballColor = ballColorSwitch()
 
   return (

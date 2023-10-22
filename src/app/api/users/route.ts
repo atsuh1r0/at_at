@@ -18,3 +18,20 @@ export async function GET(request: NextRequest) {
 
   return new Response(JSON.stringify({ data: data, error: error}))
 }
+
+export async function POST(request:NextRequest) {
+  const body =await request.json()
+
+  // 画像は一旦保留
+  const { data, error } = await supabase
+  .from('users')
+  .insert({
+    name: body.name,
+    auth_id: body.authId,
+    posse_id: body.posseId,
+    generation_id: body.generationId
+  })
+  .select()
+
+  return new Response(JSON.stringify({ data: data, error: error}))
+}

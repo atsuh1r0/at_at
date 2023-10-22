@@ -1,12 +1,12 @@
 'use client'
 
-import { LoadingOverlay } from "@/app/components/common/LoadingOverlay";
-import { createStatuses } from "@/app/services/createStatuses";
-import { getUsersWithTodayStatuses } from "@/app/services/getUsersWithTodayStatuses";
-import { putStatuses } from "@/app/services/putStatuses";
-import { Place, User, WorkingStatus } from "@/app/types/supabase"
-import { FC, useState } from "react"
-import { useForm } from "react-hook-form"
+import { LoadingOverlay } from "@/components/common/LoadingOverlay";
+import { createStatuses } from "@/services/createStatuses";
+import { getUsersWithTodayStatuses } from "@/services/getUsersWithTodayStatuses";
+import { putStatuses } from "@/services/putStatuses";
+import { Place, User, WorkingStatus } from "@/types/supabase";
+import { FC, useState } from "react";
+import { useForm } from "react-hook-form";
 
 type Props = {
   loginUserData: User;
@@ -170,7 +170,7 @@ export const RecordStatusModal: FC<Props> = ({
             {errors.comment?.message && <p className="mt-1 text-red-600 text-sm">{errors.comment.message.toString()}</p>}
           </div>
           <div className="flex mt-10 justify-end">
-            <button type="submit" className="py-3 px-8 bg-blue-400 text-white rounded">{todayStatusRecord.length === 0 || todayStatusRecord[0].is_entered == false ? '入室' : '更新'}</button>
+            <button type="submit" className="py-3 px-8 bg-blue-500 text-white rounded">{todayStatusRecord.length === 0 || todayStatusRecord[0].is_entered == false ? '入室' : '更新'}</button>
           </div>
         </form>
       }

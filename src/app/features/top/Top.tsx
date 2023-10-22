@@ -1,19 +1,20 @@
 'use client'
 
-import { ModalOverlay } from "@/app/components/common/ModalOverlay";
+import { ModalOverlay } from "@/components/common/ModalOverlay";
 import { FC, useEffect, useState } from "react";
-import { RecordStatusModal } from "./RecordStatusModal";
-import { FirstView } from "./FirstView";
-import { Header } from "@/app/components/layouts/Header";
-import { ToggleContents } from "./ToggleContents";
-import { getUsersWithTodayStatuses } from "@/app/services/getUsersWithTodayStatuses";
-import { User } from "@/app/types/supabase";
-import { getPlaces } from "@/app/services/getPlaces";
-import { getWorkingStatuses } from "@/app/services/getWorkingStatuses";
-import { Loading } from "@/app/components/common/Loading";
+import { Header } from "@/components/layouts/Header";
+import { getUsersWithTodayStatuses } from "@/services/getUsersWithTodayStatuses";
+import { User } from "@/types/supabase";
+import { getPlaces } from "@/services/getPlaces";
+import { getWorkingStatuses } from "@/services/getWorkingStatuses";
+import { Loading } from "@/components/common/Loading";
+import { FirstView } from "@/app/features/top/FirstView";
+import { ToggleContents } from "@/app/features/top/ToggleContents";
+import { RecordStatusModal } from "@/app/features/top/RecordStatusModal";
 
 // 仮
 const loginUserId = 1;
+
 
 export const Top: FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false)
