@@ -49,11 +49,6 @@ export const Top: FC = () => {
           <>
             <Header loginUserData={loginUserData} />
             <main className="h-screen bg-blue-200">
-              <form action="/auth/sign-out" method="post">
-                <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
-                  Logout
-                </button>
-              </form>
               <FirstView
                 loginUserData={loginUserData}
                 isEntered={isEntered}

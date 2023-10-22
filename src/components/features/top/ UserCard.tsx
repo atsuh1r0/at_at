@@ -32,18 +32,18 @@ export const UserCard: FC<Props> = ({userData}: Props) => {
   }
 
   return (
-    <div className="flex gap-5 p-5 rounded-2xl items-center shadow-2xl shadow-gray-700/80 text-black bg-white">
+    <div className="flex gap-5 p-5 rounded-2xl sm: justify-center items-center shadow-2xl shadow-gray-700/80 text-black bg-white">
       <div className="w-24 h-24 border-1 border-black rounded-full">
         <img src={iconUrl} alt="" className="rounded-full h-full w-full object-cover" />
       </div>
       <div>
-        <div className="flex pr-4 border-b border-gray-400 w-full font-bold text-xl">
+        <div className="flex pr-4 border-b border-gray-400 w-full font-bold sm:text-xl">
           <div className="mr-1">{displayPosse(userData.posses.posse)}</div>
           <div className="mr-2">{userData.generations.generation}期生</div>
           <div>{userData.name}</div>
         </div>
         <div className="flex gap-3">
-          <div className="md:flex md:gap-2 mt-2 text-gray-500">
+          <div className="sm:flex sm:gap-2 mt-2 text-gray-500">
             <div>帰宅予定 {displayFormattedDateTime(userData.statuses[0].scheduled_time_to_leave)}</div>
             <div>@{userData.statuses[0].places.place}</div>
           </div>
