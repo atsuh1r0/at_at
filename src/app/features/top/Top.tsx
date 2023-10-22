@@ -12,11 +12,11 @@ import { FirstView } from "@/app/features/top/FirstView";
 import { ToggleContents } from "@/app/features/top/ToggleContents";
 import { RecordStatusModal } from "@/app/features/top/RecordStatusModal";
 
-// 仮
-const loginUserId = 1;
+type Props = {
+  loginUserUuid: string;
+}
 
-
-export const Top: FC = () => {
+export const Top: FC<Props> = ({loginUserUuid}: Props) => {
   const [isModalOpened, setIsModalOpened] = useState(false)
   const [isEntered, setIsEntered] = useState(false);
   const [usersData, setUsersData] = useState<User[]>([]);
@@ -27,7 +27,7 @@ export const Top: FC = () => {
   useEffect(() => {
     const fetchUsersData = async () => {
       const usersWithStatusesDataRes = await getUsersWithTodayStatuses();
-      const loginUserWithStatusesData = usersWithStatusesDataRes.filter((userData: User) => userData.id === loginUserId);
+      const loginUserWithStatusesData = usersWithStatusesDataRes.filter((userData: User) => userData.auth_id === loginUserUuid);
       const placesDataRes = await getPlaces();
       const workingStatusesDataRes = await getWorkingStatuses();
 
@@ -38,7 +38,7 @@ export const Top: FC = () => {
       setIsEntered(loginUserWithStatusesData[0].statuses.length > 0 ? loginUserWithStatusesData[0].statuses[0].is_entered : false);
     }
     fetchUsersData();
-  }, []);
+  }, [loginUserUuid]);
 
   return (
     <>
