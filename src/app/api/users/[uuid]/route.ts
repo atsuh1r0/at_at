@@ -10,6 +10,7 @@ export async function GET(request: Request, {params}: {params: {uuid: string}}) 
   .from('users')
   .select(`
     id,
+    auth_id,
     name,
     icon_path,
     posses(id, posse),

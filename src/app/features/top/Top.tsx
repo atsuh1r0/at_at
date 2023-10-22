@@ -11,12 +11,12 @@ import { Loading } from "@/components/common/Loading";
 import { FirstView } from "@/app/features/top/FirstView";
 import { ToggleContents } from "@/app/features/top/ToggleContents";
 import { RecordStatusModal } from "@/app/features/top/RecordStatusModal";
-
-// 仮
-const loginUserId = 1;
-
+import { useSearchParams } from "next/navigation";
 
 export const Top: FC = () => {
+  const searchParams = useSearchParams();
+  const uuid = searchParams.get("id");
+
   const [isModalOpened, setIsModalOpened] = useState(false)
   const [isEntered, setIsEntered] = useState(false);
   const [usersData, setUsersData] = useState<User[]>([]);
@@ -27,7 +27,7 @@ export const Top: FC = () => {
   useEffect(() => {
     const fetchUsersData = async () => {
       const usersWithStatusesDataRes = await getUsersWithTodayStatuses();
-      const loginUserWithStatusesData = usersWithStatusesDataRes.filter((userData: User) => userData.id === loginUserId);
+      const loginUserWithStatusesData = usersWithStatusesDataRes.filter((userData: User) => userData.auth_id === uuid);
       const placesDataRes = await getPlaces();
       const workingStatusesDataRes = await getWorkingStatuses();
 
@@ -35,10 +35,15 @@ export const Top: FC = () => {
       setLoginUserData(loginUserWithStatusesData[0]);
       setPlacesData(placesDataRes);
       setWorkingStatusesData(workingStatusesDataRes);
-      setIsEntered(loginUserWithStatusesData[0].statuses.length > 0 ? loginUserWithStatusesData[0].statuses[0].is_entered : false);
+      if(loginUserWithStatusesData.length === 0) {
+        window.location.href = '/login';
+        setIsEntered(false);
+      } else {
+        setIsEntered(loginUserWithStatusesData[0].statuses.length > 0 ? loginUserWithStatusesData[0].statuses[0].is_entered : false);
+      }
     }
     fetchUsersData();
-  }, []);
+  }, [uuid]);
 
   return (
     <>
