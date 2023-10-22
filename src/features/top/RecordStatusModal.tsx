@@ -4,9 +4,9 @@ import { LoadingOverlay } from "@/components/common/LoadingOverlay";
 import { createStatuses } from "@/services/createStatuses";
 import { getUsersWithTodayStatuses } from "@/services/getUsersWithTodayStatuses";
 import { putStatuses } from "@/services/putStatuses";
-import { Place, User, WorkingStatus } from "@/types/supabase"
-import { FC, useState } from "react"
-import { useForm } from "react-hook-form"
+import { Place, User, WorkingStatus } from "@/types/supabase";
+import { FC, useState } from "react";
+import { useForm } from "react-hook-form";
 
 type Props = {
   loginUserData: User;

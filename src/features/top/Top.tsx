@@ -1,19 +1,21 @@
 'use client'
 
-import { ModalOverlay } from "@/components/common/ModalOverlay";
-import { FC, useEffect, useState } from "react";
-import { RecordStatusModal } from "./RecordStatusModal";
-import { FirstView } from "./FirstView";
-import { Header } from "@/components/layouts/Header";
-import { ToggleContents } from "./ToggleContents";
-import { getUsersWithTodayStatuses } from "@/services/getUsersWithTodayStatuses";
-import { User } from "@/types/supabase";
-import { getPlaces } from "@/services/getPlaces";
-import { getWorkingStatuses } from "@/services/getWorkingStatuses";
 import { Loading } from "@/components/common/Loading";
+import { ModalOverlay } from "@/components/common/ModalOverlay";
+import { Header } from "@/components/layouts/Header";
+import { getPlaces } from "@/services/getPlaces";
+import { getUsersWithTodayStatuses } from "@/services/getUsersWithTodayStatuses";
+import { getWorkingStatuses } from "@/services/getWorkingStatuses";
+import { FC, useState, useEffect } from "react";
+import { FirstView } from "./FirstView";
+import { RecordStatusModal } from "./RecordStatusModal";
+import { ToggleContents } from "./ToggleContents";
+import { User } from "@/types/supabase";
+
 
 // 仮
 const loginUserId = 1;
+
 
 export const Top: FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false)
@@ -46,6 +48,11 @@ export const Top: FC = () => {
           <>
             <Header loginUserData={loginUserData} />
             <main className="h-screen bg-blue-200">
+              {/* <form action="/auth/sign-out" method="post">
+                <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
+                  Logout
+                </button>
+              </form> */}
               <FirstView
                 loginUserData={loginUserData}
                 isEntered={isEntered}

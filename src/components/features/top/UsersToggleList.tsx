@@ -1,6 +1,7 @@
-import { UserCard } from "@/components/features/top/ UserCard"
-import { User } from "@/types/supabase";
+
 import { FC } from "react"
+import { UserCard } from "./ UserCard";
+import { User } from "@/types/supabase";
 
 type Props = {
   usersData: User[];

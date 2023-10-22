@@ -1,7 +1,7 @@
-import { ChangeLabelButton } from "@/components/features/top/ChangeLabelButton";
-import { EntranceButton } from "@/components/features/top/EntranceButton";
-import { User } from "@/types/supabase";
-import { FC} from "react";
+import { ChangeLabelButton } from "@/components/features/top/ChangeLabelButton"
+import { EntranceButton } from "@/components/features/top/EntranceButton"
+import { User } from "@/types/supabase"
+import { FC } from "react"
 
 type Props = {
   loginUserData: User
