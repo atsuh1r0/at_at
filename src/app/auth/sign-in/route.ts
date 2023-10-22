@@ -35,7 +35,6 @@ export async function POST(request: Request) {
     .select('*')
     .eq('auth_id', user?.id)
     .single()
-  console.log(publicLoginUserData)
 
   if(!publicLoginUserData.data) {
     return NextResponse.redirect(
