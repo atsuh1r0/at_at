@@ -11,11 +11,7 @@ import { FirstView } from "./FirstView";
 import { RecordStatusModal } from "./RecordStatusModal";
 import { ToggleContents } from "./ToggleContents";
 import { User } from "@/types/supabase";
-
-
-// 仮
-const loginUserId = 1;
-
+import { getLoginUserWithStatuses } from "@/services/getLoginUserWithStatuses";
 
 export const Top: FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false)
@@ -28,15 +24,20 @@ export const Top: FC = () => {
   useEffect(() => {
     const fetchUsersData = async () => {
       const usersWithStatusesDataRes = await getUsersWithTodayStatuses();
-      const loginUserWithStatusesData = usersWithStatusesDataRes.filter((userData: User) => userData.id === loginUserId);
+      const loginUserWithStatusesDataRes = await getLoginUserWithStatuses();
       const placesDataRes = await getPlaces();
       const workingStatusesDataRes = await getWorkingStatuses();
 
+      if (!usersWithStatusesDataRes || !loginUserWithStatusesDataRes || !placesDataRes || !workingStatusesDataRes) {
+        await fetch('/auth/sign-out', { method: 'POST' });
+        location.reload();
+      }
+
       setUsersData(usersWithStatusesDataRes);
-      setLoginUserData(loginUserWithStatusesData[0]);
+      setLoginUserData(loginUserWithStatusesDataRes[0]);
       setPlacesData(placesDataRes);
       setWorkingStatusesData(workingStatusesDataRes);
-      setIsEntered(loginUserWithStatusesData[0].statuses.length > 0 ? loginUserWithStatusesData[0].statuses[0].is_entered : false);
+      setIsEntered(loginUserWithStatusesDataRes[0].statuses.length > 0 ? loginUserWithStatusesDataRes[0].statuses[0].is_entered : false);
     }
     fetchUsersData();
   }, []);
@@ -48,11 +49,11 @@ export const Top: FC = () => {
           <>
             <Header loginUserData={loginUserData} />
             <main className="h-screen bg-blue-200">
-              {/* <form action="/auth/sign-out" method="post">
+              <form action="/auth/sign-out" method="post">
                 <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
                   Logout
                 </button>
-              </form> */}
+              </form>
               <FirstView
                 loginUserData={loginUserData}
                 isEntered={isEntered}

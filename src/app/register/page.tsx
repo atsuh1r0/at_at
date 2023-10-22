@@ -1,6 +1,6 @@
-import { Messages } from '@/features/login/Messages'
+import { Messages } from '@/features/register/Messages'
 
-export default function Login() {
+export default function Register() {
   return (
     <div className='flex h-screen justify-center items-center bg-white text-black'>
       <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
