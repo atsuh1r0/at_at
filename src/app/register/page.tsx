@@ -1,12 +1,17 @@
 'use client'
 
 import { Loading } from '@/components/common/Loading';
+import { LoadingOverlay } from '@/components/common/LoadingOverlay';
+import { createUserInfo } from '@/services/createUserInfo';
+import { getAuthSession } from '@/services/getAuthSession';
 import { getGenerations } from '@/services/getGenerations';
 import { getPosses } from '@/services/getPosses';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function Register() {
+  const [onSubmitLoading, setOnSubmitLoading] = useState(false)
   const [possesData, setPossesData] = useState([]);
   const [generationsData, setGenerationsData] = useState([]);
 
@@ -15,6 +20,8 @@ export default function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUsersData = async () => {
@@ -65,8 +72,45 @@ export default function Register() {
     }
   };
 
-  const onSubmit = (formData: any) => {
-    console.log(formData)
+  const onSubmit = async(formData: any) => {
+    setOnSubmitLoading(true)
+
+    const sessionData = await getAuthSession();
+    const uuid = sessionData?.user.id;
+    if(!uuid) {
+      alert("セッションが切れました。ログインし直してください。")
+      setOnSubmitLoading(false)
+      router.push('/login')
+      return
+    }
+
+    // 画像は一旦保留
+
+    // if(formData.icon.length == 0) {
+    //   delete formData.icon
+    // }
+
+    // if(formData.icon[0].type !== 'image/png' && formData.icon[0].type !== 'image/jpeg') {
+    //   alert("画像ファイルを選択してください。")
+    //   setOnSubmitLoading(false)
+    //   return
+    // }
+
+    const reqBodyData = JSON.stringify({
+      authId: uuid,
+      ...formData,
+    })
+
+    const resData = await createUserInfo(reqBodyData)
+
+    if(resData.error) {
+      alert("エラーが発生しました。")
+      setOnSubmitLoading(false)
+      return
+    }
+
+    setOnSubmitLoading(false)
+    router.push('/')
   }
 
   return (
@@ -115,14 +159,14 @@ export default function Register() {
                   ))}
                 </select>
                 {errors.generationId?.message && <p className="mt-1 text-red-600 text-sm">{errors.generationId.message.toString()}</p>}
-                <label className="text-md" htmlFor="icon">
+                {/* <label className="text-md" htmlFor="icon">
                   アイコン画像
                 </label>
                 <input
                   className="px-4 mb-6"
                   type='file'
                   {...register('icon')}
-                />
+                /> */}
                 <button className="bg-blue-500 rounded px-4 py-2 text-white mb-2" type='submit'>
                   登録
                 </button>
@@ -134,6 +178,9 @@ export default function Register() {
             <Loading />
           </div>
         )
+      }
+      {onSubmitLoading &&
+        <LoadingOverlay />
       }
     </>
   )
