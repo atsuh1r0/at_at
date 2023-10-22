@@ -1,9 +1,7 @@
-import Top from "./features/top";
+import { Top } from "./features/top/Top";
 
 export default function Home() {
   return (
-    <main className="h-screen bg-blue-200">
       <Top />
-    </main>
   )
 }
