@@ -27,9 +27,17 @@ export async function POST(request: Request) {
     )
   }
 
-  // サインインに成功したら、public.usersに結びついたレコードが存在するか確認する
-  const publicLoginUserData = await getLoginUserWithStatuses()
-  if(!publicLoginUserData) {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const publicLoginUserData = await supabase
+    .from('users')
+    .select('*')
+    .eq('auth_id', user?.id)
+    .single()
+  console.log(publicLoginUserData)
+
+  if(!publicLoginUserData.data) {
     return NextResponse.redirect(
       `${requestUrl.origin}/register`,
       {
