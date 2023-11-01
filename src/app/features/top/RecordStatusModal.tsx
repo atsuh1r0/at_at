@@ -29,8 +29,9 @@ export const RecordStatusModal: FC<Props> = ({
   }: Props) => {
   const [onLoading, setOnLoading] = useState(false)
     const todayStatusRecord = loginUserData.statuses;
-    const today = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }).slice(0, 10).replace(/\//g, '-');
-
+    const today = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
+    const dateParts = today.split(' ')[0].split('/');
+    const formattedDate = `${dateParts[0]}-${dateParts[1].padStart(2, '0')}-${dateParts[2].padStart(2, '0')}`;
   const {
     register,
     handleSubmit,
@@ -75,7 +76,7 @@ export const RecordStatusModal: FC<Props> = ({
       // statusesに今日のレコードがある場合はupdate
       const reqBodyData = JSON.stringify({
         userId: loginUserData.id,
-        date: today,
+        date: formattedDate,
         type: 'in',
         ...formData
       })
@@ -91,7 +92,7 @@ export const RecordStatusModal: FC<Props> = ({
       // statusesに今日のレコードがない場合はcreate
       const reqBodyData = JSON.stringify({
         userId: loginUserData.id,
-        date: today,
+        date: formattedDate,
         ...formData
       })
 

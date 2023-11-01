@@ -1,7 +1,11 @@
 import { getAuthSession } from "./getAuthSession";
 
 export const getLoginUserWithStatuses = async() => {
-  const today = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }).slice(0, 10).replace(/\//g, '-');
+  // 1日が01となるようにする
+  const today = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
+  const dateParts = today.split(' ')[0].split('/');
+  const formattedDate = `${dateParts[0]}-${dateParts[1].padStart(2, '0')}-${dateParts[2].padStart(2, '0')}`;
+
   const sessionData = await getAuthSession();
   const uuid = sessionData?.user.id;
 
@@ -32,7 +36,7 @@ export const getLoginUserWithStatuses = async() => {
   // userDataに対応するtodayが今日の日付のstatusesレコードがある場合はそのレコードを追加、ない場合は空の配列を追加
   userData.forEach((user: any) => {
     const todayStatus = statusData.filter((status: any) => {
-      return status.date === today && status.user_id === user.id
+      return status.date === formattedDate && status.user_id === user.id
     });
 
     if(todayStatus?.length !== 0) {
