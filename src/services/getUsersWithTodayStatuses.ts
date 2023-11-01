@@ -1,5 +1,8 @@
 export const getUsersWithTodayStatuses = async() => {
-  const today = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }).slice(0, 10).replace(/\//g, '-');
+  // 1日が01となるようにする
+  const today = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
+  const dateParts = today.split(' ')[0].split('/');
+  const formattedDate = `${dateParts[0]}-${dateParts[1].padStart(2, '0')}-${dateParts[2].padStart(2, '0')}`;
 
   const users = await fetch('/api/users', {
     method: 'GET',
@@ -25,7 +28,7 @@ export const getUsersWithTodayStatuses = async() => {
       user.statuses = [];
     } else {
       const todayStatus = statusData.filter((status: any) => {
-        return status.date === today && status.user_id === user.id
+        return status.date === formattedDate && status.user_id === user.id
       });
 
       if(todayStatus?.length !== 0) {
