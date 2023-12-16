@@ -1,5 +1,5 @@
 ## セットアップ
-Node.jsインストール済み前提（参考: https://kinsta.com/jp/blog/how-to-install-node-js/）
+Node.jsインストール済み前提（参考: https://kinsta.com/jp/blog/how-to-install-node-js/ ）
 
 ### 1. 必要モジュールのインストール
 ```bash
@@ -8,6 +8,8 @@ npm install
 
 ### 2. supabaseのセットアップ
 wikiを参照
+
+[supabaseセットアップ](https://github.com/atsuh1r0/at_at/wiki/supabase-%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97)
 
 ### 3. 開発環境立ち上げ
 ```bash
@@ -22,6 +24,6 @@ Vercelでデプロイ
 
 
 ## Wiki
-- supabaseセットアップ
-- supabase開発ルール
-- Git・GitHub運用ルール
+- [supabaseセットアップ](https://github.com/atsuh1r0/at_at/wiki/supabase-%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97)
+- [supabase 開発方法&ルール](https://github.com/atsuh1r0/at_at/wiki/supabase-%E9%96%8B%E7%99%BA%E6%96%B9%E6%B3%95&%E3%83%AB%E3%83%BC%E3%83%AB)
+- [Git・GitHub運用ルール](https://github.com/atsuh1r0/at_at/wiki/Git&GitHub-%E9%81%8B%E7%94%A8%E3%83%AB%E3%83%BC%E3%83%AB)
