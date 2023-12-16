@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const UserCard: FC<Props> = ({userData}: Props) => {
-  const { data } =  supabase.storage.from('userIcons').getPublicUrl(userData.icon_path.replace(/\s+/g, ""));
+  const { data } =  supabase.storage.from('user-icons').getPublicUrl(userData.icon_path.replace(/\s+/g, ""));
   const iconUrl = data.publicUrl;
 
   const displayPosse = (posse: number) => {
