@@ -1,19 +1,16 @@
+import { FC } from 'react'
 
-import { FC } from "react"
-import { UserCard } from "./ UserCard";
-import { User } from "@/types/supabase";
+import { User } from '@/types/supabase'
+
+import { UserCard } from './UserCard'
 
 type Props = {
-  usersData: User[];
+  usersData: User[]
 }
 
-export const UsersToggleList: FC<Props> = ({usersData}: Props) => {
+export const UsersToggleList: FC<Props> = ({ usersData }: Props) => {
   return (
-    <div
-      className={
-          "flex flex-col gap-5"
-      }
-    >
+    <div className="flex flex-col gap-5">
       {usersData.map((userData) => (
         <UserCard key={userData.id} userData={userData} />
       ))}
