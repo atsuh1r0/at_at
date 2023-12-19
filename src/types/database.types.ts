@@ -6,7 +6,7 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export interface Database {
+export type Database = {
   graphql_public: {
     Tables: {
       [_ in never]: never
@@ -148,23 +148,23 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "statuses_place_id_fkey"
-            columns: ["place_id"]
-            referencedRelation: "places"
-            referencedColumns: ["id"]
+            foreignKeyName: 'statuses_place_id_fkey'
+            columns: ['place_id']
+            referencedRelation: 'places'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "statuses_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
+            foreignKeyName: 'statuses_user_id_fkey'
+            columns: ['user_id']
+            referencedRelation: 'users'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "statuses_working_status_id_fkey"
-            columns: ["working_status_id"]
-            referencedRelation: "working_statuses"
-            referencedColumns: ["id"]
-          }
+            foreignKeyName: 'statuses_working_status_id_fkey'
+            columns: ['working_status_id']
+            referencedRelation: 'working_statuses'
+            referencedColumns: ['id']
+          },
         ]
       }
       users: {
@@ -203,23 +203,23 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "users_auth_id_fkey"
-            columns: ["auth_id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
+            foreignKeyName: 'users_auth_id_fkey'
+            columns: ['auth_id']
+            referencedRelation: 'users'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "users_generation_id_fkey"
-            columns: ["generation_id"]
-            referencedRelation: "generations"
-            referencedColumns: ["id"]
+            foreignKeyName: 'users_generation_id_fkey'
+            columns: ['generation_id']
+            referencedRelation: 'generations'
+            referencedColumns: ['id']
           },
           {
-            foreignKeyName: "users_posse_id_fkey"
-            columns: ["posse_id"]
-            referencedRelation: "posses"
-            referencedColumns: ["id"]
-          }
+            foreignKeyName: 'users_posse_id_fkey'
+            columns: ['posse_id']
+            referencedRelation: 'posses'
+            referencedColumns: ['id']
+          },
         ]
       }
       working_statuses: {
@@ -364,11 +364,11 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "objects_bucketId_fkey"
-            columns: ["bucket_id"]
-            referencedRelation: "buckets"
-            referencedColumns: ["id"]
-          }
+            foreignKeyName: 'objects_bucketId_fkey'
+            columns: ['bucket_id']
+            referencedRelation: 'buckets'
+            referencedColumns: ['id']
+          },
         ]
       }
     }
@@ -439,4 +439,3 @@ export interface Database {
     }
   }
 }
-
