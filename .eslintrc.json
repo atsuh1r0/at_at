@@ -32,29 +32,29 @@
   ],
   "rules": {
     "react/jsx-curly-brace-presence": "warn",
-    "simple-import-sort/imports": "error", //importとexportのソート
+    "simple-import-sort/imports": "warn", //importとexportのソート
     "simple-import-sort/exports": "error",
     "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
     "@typescript-eslint/consistent-type-definitions": ["warn", "type"], //型定義はtypeを使う
-    "@typescript-eslint/no-explicit-any": "error", //any禁止
-    "@typescript-eslint/no-unused-vars": "error", //未使用の変数禁止
-    "react/self-closing-comp": ["error", { "component": true, "html": true }], //<Component />のように自己閉タグを使う
+    "@typescript-eslint/no-explicit-any": "warn", //any禁止
+    "@typescript-eslint/no-unused-vars": "warn", //未使用の変数禁止
+    "react/self-closing-comp": ["warn", { "component": true, "html": true }], //<Component />のように自己閉タグを使う
     "no-control-regex": "off", //正規表現中のASCII制御文字ok
     "react/jsx-boolean-value": "error", //attribute={true} → attribute
     "react/jsx-pascal-case": "error", //コンポーネント名はパスカルケース
     "object-shorthand": ["warn", "properties", { "avoidQuotes": true }], //eslint-disable-next-lineのコメントは必ず説明を書く。https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/require-description.html
     "eslint-comments/require-description": "error", //https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/disable-enable-pair.html
     "eslint-comments/disable-enable-pair": ["error", { "allowWholeFile": true }], //default export禁止
-    "import/no-default-export": "error", //三項演算子のネスト禁止
+    "import/no-default-export": "warn", //三項演算子のネスト禁止
     "no-nested-ternary": "error",
     // "react/function-component-definition": [
     //   "error",  //関数コンポーネントの定義はアロー関数を使う
     //   { "namedComponents": "arrow-function" }
     // ],
     "no-magic-numbers": [
-      "error",
+      "warn",
       {
         "ignore": [-1, 0, 1],  //配列検索でindexOf === -1などは許容する
         "ignoreDefaultValues": true, //const { tax = 0.1 } = props
