@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## セットアップ
+Node.jsインストール済み前提（参考: https://kinsta.com/jp/blog/how-to-install-node-js/ ）
 
-## Getting Started
-
-First, run the development server:
-
+### 1. 必要モジュールのインストール
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. supabaseのセットアップ
+wikiを参照
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[supabaseセットアップ](https://github.com/atsuh1r0/at_at/wiki/supabase-%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### 3. 開発環境立ち上げ
+```bash
+npm run dev
+```
+[http://localhost:3000](http://localhost:3000) 
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## デプロイ
+Vercelでデプロイ
+- production https://at-at-frontend.vercel.app/
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Wiki
+- [supabaseセットアップ](https://github.com/atsuh1r0/at_at/wiki/supabase-%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97)
+- [supabase 開発方法&ルール](https://github.com/atsuh1r0/at_at/wiki/supabase-%E9%96%8B%E7%99%BA%E6%96%B9%E6%B3%95&%E3%83%AB%E3%83%BC%E3%83%AB)
+- [Git・GitHub運用ルール](https://github.com/atsuh1r0/at_at/wiki/Git&GitHub-%E9%81%8B%E7%94%A8%E3%83%AB%E3%83%BC%E3%83%AB)

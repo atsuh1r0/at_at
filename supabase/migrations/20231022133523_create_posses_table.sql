@@ -1,0 +1,14 @@
+DROP TABLE IF EXISTS posses;
+
+CREATE TABLE posses (
+  id SERIAL PRIMARY KEY,
+  posse INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  deleted_at TIMESTAMP
+);
+
+INSERT INTO posses (posse) VALUES
+  (1),
+  (2),
+  (3);
