@@ -1,11 +1,12 @@
 import { Messages } from '@/app/features/login/Messages'
+import { FaGithub } from 'react-icons/fa'
 
 export default function Login() {
   return (
     <div className='flex h-screen justify-center items-center bg-white text-black'>
       <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
         <form
-          className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
+          className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground mb-6"
           action="/auth/sign-in"
           method="post"
         >
@@ -38,6 +39,12 @@ export default function Login() {
             Sign Up
           </button>
           <Messages />
+        </form>
+        <form className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground mb-6">
+          <button className="border bg-black rounded px-4 py-2 text-white mb-2 flex justify-center gap-4" formAction="/auth/github">
+            <FaGithub className="text-2xl" />
+            GitHubでログイン
+          </button>
         </form>
       </div>
     </div>
