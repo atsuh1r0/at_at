@@ -11,4 +11,10 @@ module.exports = {
     buildEslintCommand,
     'prettier --write',
   ],
+  '*.js': (files) => {
+    const cwd = process.cwd()
+    const relativePaths = files.map((file) => path.relative(cwd, file))
+
+    return `eslint --fix ${relativePaths.join(' ')}`
+  },
 }
