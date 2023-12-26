@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ['localhost'], // 画像を置いているドメイン
   },
+  experimental: {
+    serverActions: true,
+  },
 }
 
 module.exports = nextConfig
