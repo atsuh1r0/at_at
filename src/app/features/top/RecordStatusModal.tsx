@@ -121,11 +121,10 @@ export const RecordStatusModal: FC<Props> = ({
 ${loginUserData.name}がHarborsに入室したよ！
 
 日付：${formattedDate}
-場所：${formData.placeId}
+場所：${placesData[formData.placeId - 1].place}
 帰宅予定：${formData.scheduledTimeToLeave}
-ステータス：${formData.workingStatusId}
-一言：${formData.comment}
-    `
+ステータス：${workingStatusesData[formData.workingStatusId - 1].status}
+一言：${formData.comment}`
     await sendLineNotification(notificationMessage)
   }
 
