@@ -124,7 +124,9 @@ ${loginUserData.name}がHarborsに入室したよ！
 場所：${placesData[formData.placeId - 1].place}
 帰宅予定：${formData.scheduledTimeToLeave}
 ステータス：${workingStatusesData[formData.workingStatusId - 1].status}
-一言：${formData.comment}`
+一言：${formData.comment}
+https://at-at-frontend.vercel.app/
+`
     await sendLineNotification(notificationMessage)
   }
 
