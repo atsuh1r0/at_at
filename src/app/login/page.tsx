@@ -1,7 +1,18 @@
+'use client'
 import { Messages } from '@/app/features/login/Messages'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { FaGithub } from 'react-icons/fa'
 
 export default function Login() {
+  const supabase = createClientComponentClient();
+  const handleGithubLogin = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "github",
+      options: {
+        redirectTo: "http://localhost:3000/auth/callback",
+      },
+    });
+  }
   return (
     <div className='flex h-screen justify-center items-center bg-white text-black'>
       <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
@@ -41,7 +52,7 @@ export default function Login() {
           <Messages />
         </form>
         <form className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground mb-6">
-          <button className="border bg-black rounded px-4 py-2 text-white mb-2 flex justify-center gap-4" formAction="/auth/github">
+          <button className="border bg-black rounded px-4 py-2 text-white mb-2 flex justify-center gap-4" onClick={handleGithubLogin}>
             <FaGithub className="text-2xl" />
             GitHubでログイン
           </button>
