@@ -122,7 +122,7 @@ ${loginUserData.name}がHarborsに入室したよ！
 
 日付：${formattedDate}
 場所：${placesData[formData.placeId - 1].place}
-帰宅予定：${formData.scheduledTimeToLeave}
+帰宅予定：${formData.scheduledTimeToLeave.substring(0, 5)}
 ステータス：${workingStatusesData[formData.workingStatusId - 1].status}
 一言：${formData.comment}
 https://at-at-frontend.vercel.app/
