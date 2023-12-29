@@ -35,8 +35,8 @@ export const UserCard: FC<Props> = ({ userData }: Props) => {
   }
 
   return (
-    <div className="flex gap-5 p-5 rounded-2xl sm: justify-center items-center shadow-2xl shadow-gray-700/80 text-black bg-white">
-      <div className="w-24 h-24 border-1 border-black rounded-full">
+    <div className="flex gap-12 p-5 rounded-2xl sm: justify-center items-center shadow-2xl shadow-gray-700/80 text-black bg-white">
+      <div className="w-28 h-28 border-1 border-black rounded-full">
         <img
           src={iconUrl}
           alt=""

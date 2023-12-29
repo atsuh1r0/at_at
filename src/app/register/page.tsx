@@ -98,18 +98,6 @@ export default function Register() {
       return
     }
 
-    // 画像は一旦保留
-
-    // if(formData.icon.length == 0) {
-    //   delete formData.icon
-    // }
-
-    // if(formData.icon[0].type !== 'image/png' && formData.icon[0].type !== 'image/jpeg') {
-    //   alert("画像ファイルを選択してください。")
-    //   setOnSubmitLoading(false)
-    //   return
-    // }
-
     const reqBodyData = JSON.stringify({
       authId: uuid,
       ...formData,
@@ -189,18 +177,10 @@ export default function Register() {
                   {errors.generationId.message.toString()}
                 </p>
               )}
-              {/* <label className="text-md" htmlFor="icon">
-                  アイコン画像
-                </label>
-                <input
-                  className="px-4 mb-6"
-                  type='file'
-                  {...register('icon')}
-                /> */}
 
               <label className="text-md">アイコン選択</label>
 
-              <div className="image-gallery mb-6 flex">
+              <div className="image-gallery mb-4 flex justify-center flex-wrap w-full gap-3">
                 {Array.from({ length: 8 }, (_, index) => (
                   <div key={index} className="radio-button">
                     <input
@@ -216,7 +196,7 @@ export default function Register() {
                       <img
                         src={`images/icon${index + 1}.png`}
                         alt={`Icon ${index + 1}`}
-                        className={`w-12 h-12 rounded-full cursor-pointer ${
+                        className={`w-20 h-20 rounded-full cursor-pointer ${
                           selectedIcon === `icon${index + 1}.png`
                             ? 'border-blue-500 border-2'
                             : ''
@@ -226,17 +206,6 @@ export default function Register() {
                   </div>
                 ))}
               </div>
-
-              {selectedIcon && (
-                <div className="mb-4">
-                  選択中のアイコン:{' '}
-                  <img
-                    src={`images/${selectedIcon}`}
-                    alt="Selected Icon"
-                    className="w-8 h-8 rounded-full"
-                  />
-                </div>
-              )}
 
               <button
                 className="bg-blue-500 rounded px-4 py-2 text-white mb-2"
