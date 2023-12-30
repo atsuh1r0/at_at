@@ -126,7 +126,7 @@ const EditContents = () => {
                 className="flex-1 flex flex-col w-full justify-center gap-2 text-foreground"
               >
                 {/* user posse */}
-                <label className="text-md" htmlFor="posseId">
+                <label className="text-md text-black" htmlFor="posseId">
                   所属POSSE
                 </label>
                 <select
@@ -142,7 +142,7 @@ const EditContents = () => {
                   ))}
                 </select>
                 {/* user generation */}
-                <label className="text-md" htmlFor="generationId">
+                <label className="text-md text-black" htmlFor="generationId">
                   期生
                 </label>
                 <select
@@ -158,7 +158,7 @@ const EditContents = () => {
                   ))}
                 </select>
                 {/* user name */}
-                <label className="text-md">ユーザー名</label>
+                <label className="text-md text-black">ユーザー名</label>
                 <input
                   type="text"
                   className="border rounded-md py-2 px-3 focus:outline-none focus:border-sky-500 block text-black"
