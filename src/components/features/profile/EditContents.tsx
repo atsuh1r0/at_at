@@ -117,7 +117,7 @@ const EditContents = () => {
         <>
           <Header loginUserData={loginUserData} />
           <main className="h-screen bg-blue-200">
-            <div className="text-center font-bold text-xl pt-5 mb-1">
+            <div className="text-center font-bold text-xl pt-5 mb-1 text-black">
               プロフィール変更
             </div>
             <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2 mx-auto">
