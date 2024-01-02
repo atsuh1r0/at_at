@@ -12,13 +12,8 @@ export const Header: FC<Props> = ({ loginUserData }: Props) => {
   const router = useRouter()
 
   const handleClick = () => {
-    if (!loginUserData.auth_id) {
-      router.push('/login')
-    } else {
-      router.push(`/profile/?id=${loginUserData.auth_id}`)
-    }
+    router.push(`/profile/?id=${loginUserData.auth_id}`)
   }
-
   return (
     <header className="flex p-2 justify-between items-center bg-blue-400">
       <div className="text-white cursor-pointer" onClick={handleClick}>

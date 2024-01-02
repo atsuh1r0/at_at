@@ -25,6 +25,10 @@ const EditContents = () => {
   const [generationId, setGenerationId] = useState('')
   const [loginUserData, setLoginUserData] = useState<User>()
 
+  if (!uuid) {
+    router.push('/login')
+  }
+
   useEffect(() => {
     const fetchUsersData = async () => {
       const usersWithStatusesDataRes = await getUsersWithTodayStatuses()
