@@ -29,13 +29,4 @@ Vercelでデプロイ
 - [Git・GitHub運用ルール](https://github.com/atsuh1r0/at_at/wiki/Git&GitHub-%E9%81%8B%E7%94%A8%E3%83%AB%E3%83%BC%E3%83%AB)
 
 
-## ISSUE  
 
-
-### タスク内容 :    
-
-どのような背景で何のために実装するのか
-
-### 備考 :
-
-特別な共有項目や実装前メモなど
