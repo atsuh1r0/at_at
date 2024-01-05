@@ -3,7 +3,7 @@
 import { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { sendLineNotification } from '@/app/api/notifications/route'
+import { sendLineNotification } from '@/app/lib/notifications/route'
 import { LoadingOverlay } from '@/components/common/LoadingOverlay'
 import { createStatuses } from '@/services/createStatuses'
 import { getUsersWithTodayStatuses } from '@/services/getUsersWithTodayStatuses'
