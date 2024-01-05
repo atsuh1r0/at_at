@@ -1,3 +1,15 @@
+export default async function handler(req: any, res: any) {
+  const { method } = req
+
+  if (method === 'POST') {
+    const message = req.body.message
+    await sendLineNotification(message)
+    res.status(200).json({ success: true })
+  } else {
+    res.status(405).json({ error: 'Method Not Allowed' })
+  }
+}
+
 export const sendLineNotification = async (message: string): Promise<void> => {
   const accessToken = process.env.NEXT_PUBLIC_LINE_NOTIFY_ACCESS_TOKEN
   const url = 'https://notify-api.line.me/api/notify'
