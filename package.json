@@ -15,11 +15,14 @@
     "@supabase/auth-ui-react": "^0.4.5",
     "@supabase/auth-ui-shared": "^0.1.7",
     "@supabase/supabase-js": "^2.38.2",
+    "bufferutil": "^4.0.8",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "utf-8-validate": "^6.0.3",
+    "ws": "^8.16.0"
   },
   "devDependencies": {
     "@types/node": "^20.8.6",
