@@ -1,5 +1,3 @@
-'use server'
-
 export const sendLineNotification = async (message: string): Promise<void> => {
   const accessToken = process.env.NEXT_PUBLIC_LINE_NOTIFY_ACCESS_TOKEN
   const url = 'https://notify-api.line.me/api/notify'
