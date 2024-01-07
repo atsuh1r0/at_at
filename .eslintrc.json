@@ -46,8 +46,7 @@
     "react/jsx-pascal-case": "error", //コンポーネント名はパスカルケース
     "object-shorthand": ["warn", "properties", { "avoidQuotes": true }], //eslint-disable-next-lineのコメントは必ず説明を書く。https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/require-description.html
     "eslint-comments/require-description": "error", //https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/disable-enable-pair.html
-    "eslint-comments/disable-enable-pair": ["error", { "allowWholeFile": true }], //default export禁止
-    "import/no-default-export": "warn", //三項演算子のネスト禁止
+    "eslint-comments/disable-enable-pair": ["error", { "allowWholeFile": true }], //三項演算子のネスト禁止
     "no-nested-ternary": "error",
     // "react/function-component-definition": [
     //   "error",  //関数コンポーネントの定義はアロー関数を使う
